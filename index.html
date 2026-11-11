@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>گذرنامه دیجیتال محصول – سفر یک محصول</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FFF1DC;--peach:#FFE3BF;--brown:#6B4226;--brown2:#8a5a36;--orange:#F5A623;--orange2:#d98a0f;--green:#27AE60;--ink:#3b2f2f;--line:#ecd9bd}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{margin:0;font-family:'Vazirmatn',Tahoma,'Segoe UI',sans-serif;background:var(--peach);color:var(--brown);overflow:hidden;font-size:15px;line-height:1.7}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+h1,h2,h3,h4,p{margin:0}
+.ic{flex:none;vertical-align:-3px}
+.screen{position:fixed;inset:0;display:none;overflow:auto}
+.screen.on{display:block;animation:fade .45s ease}
+#s-main.on{display:flex;flex-direction:column;overflow:hidden}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 18px 48px;text-align:center}
+.wrap h1{font-size:clamp(26px,5vw,40px);font-weight:900;line-height:1.35;margin-top:10px;text-wrap:balance}
+.sub{font-size:clamp(15px,2.4vw,18px);color:var(--brown2);margin:6px auto 26px;max-width:620px}
+.demo{display:inline-block;background:#fff;border:1.5px dashed var(--brown2);border-radius:99px;padding:1px 10px;font-size:11.5px;color:var(--brown2);white-space:nowrap}
+.demo.big{font-size:13px;padding:3px 14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.pcard{background:#fff;border:3px solid var(--brown);border-radius:24px;padding:18px 18px 22px;box-shadow:0 7px 0 var(--brown);display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform .15s}
+.pcard:hover{transform:translateY(-4px)}
+.pcard h2{font-size:22px;font-weight:900}
+.pcard p{font-size:14.5px;color:var(--brown2);flex:1}
+.art{width:170px;height:128px;background:linear-gradient(#e9f7ff,#fff7e6);border-radius:18px;display:grid;place-items:center}
+.art svg{width:82%;height:82%}
+.art.sm{width:64px;height:48px;border-radius:12px}.art.xs{width:38px;height:30px;border-radius:9px;flex:none}.art.pp{width:92px;height:76px;flex:none;background:#3a3a3a}
+.btn{background:var(--orange);color:#fff;font-weight:800;font-size:16px;padding:10px 26px;border-radius:14px;box-shadow:0 5px 0 var(--orange2);transition:transform .1s,box-shadow .1s;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--orange2)}
+.btn.sm{font-size:13.5px;padding:7px 14px;border-radius:11px;box-shadow:0 3px 0 var(--orange2);margin-top:12px}
+.btn.ghost{background:#fff;color:var(--brown);box-shadow:0 3px 0 var(--line);border:1.5px solid var(--line)}
+.motto{margin:34px auto 0;max-width:680px;font-weight:700;color:var(--brown2);font-size:15px}
+.rtop{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.link{font-size:13.5px;color:var(--brown2);font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:6px 4px}
+.mini{display:inline-flex;align-items:center;gap:10px}
+div.mini{background:#fff;border-radius:16px;padding:6px 16px 6px 8px;margin-top:6px;border:2px solid var(--line)}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;text-align:right}
+.rcard{background:#fff;border:2.5px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:4px;text-align:right;box-shadow:0 4px 0 var(--line);transition:.15s}
+.rcard b{font-size:16.5px;font-weight:900}.rcard span{font-size:13px;color:var(--brown2);line-height:1.65}
+.rcard .ricon{width:44px;height:44px;border-radius:13px;background:var(--peach);display:grid;place-items:center;color:var(--brown)}
+.rcard.sel{border-color:var(--orange);box-shadow:0 4px 0 var(--orange2);background:#fffaf0}.rcard.sel .ricon{background:var(--orange);color:#fff}
+#roleextra h3{margin:26px 0 10px;font-size:18px}
+.complist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.cbtn{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 12px;text-align:right;font-weight:800;font-size:14.5px;position:relative;padding-right:30px}
+.cbtn i{position:absolute;right:11px;top:17px;width:10px;height:10px;border-radius:50%}
+.cbtn small{display:block;font-weight:500;color:var(--brown2);font-size:12px}
+.cbtn.sel{border-color:var(--orange);background:#fffaf0}
+.confirm{margin-top:22px;background:#fff;border:2.5px dashed var(--orange);border-radius:18px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.confirm p{font-size:17px}
+.note{margin-top:22px;font-size:12.5px;color:var(--brown2);max-width:700px;margin-inline:auto}
+
+/* ---- نوار بالا ---- */
+#top{display:flex;align-items:center;gap:10px;padding:7px 12px;background:var(--cream);border-bottom:2px solid var(--line);z-index:30;flex:none;min-height:54px}
+.ibtn{width:38px;height:38px;border-radius:12px;background:#fff;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+#hprod{display:flex;align-items:center;gap:8px;min-width:0}
+#hprod b{display:block;font-size:14.5px;line-height:1.3;white-space:nowrap}#hprod small{display:block;font-size:11.5px;color:var(--brown2);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42vw}
+.chipbtn{background:#fff;border:2px solid var(--orange);color:var(--orange2);font-weight:800;font-size:13px;border-radius:99px;padding:4px 13px;white-space:nowrap;flex:none}
+.grow{flex:1}
+.pillst{font-size:12.5px;font-weight:700;border-radius:99px;padding:3px 11px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.pillst.ok{background:#e3f6ea;color:#1e8449}.pillst.bad{background:#fde8e4;color:#c0392b;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.55}}
+#clock{font-size:12px;color:var(--brown2);white-space:nowrap}
+
+/* ---- صحنه ---- */
+#stage{position:relative;flex:1;overflow:hidden;background:#bfe4f5;min-height:0}
+#stage>svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;user-select:none;-webkit-user-select:none;visibility:hidden;cursor:grab}
+#stage>svg.on{visibility:visible}
+#stage>svg:active{cursor:grabbing}
+#game{background:linear-gradient(#8fd3f7,#c6ecff 70%)}
+svg text{font-family:'Vazirmatn',Tahoma,sans-serif}
+[data-act]{cursor:pointer}
+.hud{position:absolute;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;z-index:6;width:max-content;max-width:96%;pointer-events:none}
+.hud>*{pointer-events:auto}
+.seg2{background:#fff;border-radius:14px;padding:4px;display:flex;box-shadow:0 3px 10px rgba(0,0,0,.14)}
+.seg2 button{padding:6px 15px;border-radius:10px;font-weight:800;font-size:13.5px;color:var(--brown2)}
+.seg2 button.on{background:var(--orange);color:#fff}
+.flows{background:rgba(255,255,255,.93);border-radius:12px;padding:5px 11px;display:flex;gap:13px;font-size:12px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.flows span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.fl{display:inline-block;width:24px;height:0;border-top:4px solid #7a8591;border-radius:2px}
+.fl.inf{border-top:4px dotted #1e88e5}
+.dpp-off .fl.inf{border-top-color:#b0b7be}
+#banner{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:6;width:min(640px,94%);pointer-events:none}
+#banner div{background:#fff3e0;border:2px solid #f39c12;color:#8a4b00;border-radius:13px;padding:7px 13px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.14)}
+#toasts{position:absolute;bottom:92px;left:50%;transform:translateX(-50%);z-index:25;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none;width:94%}
+.toast{background:#2f2a26;color:#fff;border-radius:99px;padding:6px 15px;font-size:13px;display:flex;gap:7px;align-items:center;animation:tin .25s ease;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.toast .ic{color:#58d68d}.toast.warn .ic{color:#f5b041}
+@keyframes tin{from{opacity:0;transform:translateY(10px)}}
+.zoom{position:absolute;left:10px;top:64px;z-index:5;display:flex;flex-direction:column;gap:5px}
+.zoom button{width:36px;height:36px;border-radius:11px;background:#fff;font-size:19px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.16);line-height:1}
+#legend{position:absolute;right:10px;top:64px;z-index:5;background:rgba(255,255,255,.95);border-radius:13px;box-shadow:0 2px 10px rgba(0,0,0,.14);font-size:12px;max-width:240px}
+#legend summary{padding:7px 12px;font-weight:800;list-style:none;cursor:pointer;display:flex;gap:6px;align-items:center}
+#legend summary::-webkit-details-marker{display:none}
+#legend div{padding:0 12px 10px;display:flex;flex-direction:column;gap:2px}
+#legend h4{font-size:11.5px;color:var(--brown2);margin-top:7px;border-top:1px solid var(--line);padding-top:6px}
+#legend span{display:flex;align-items:center;gap:7px}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}.ln{width:22px;height:4px;border-radius:2px;flex:none;background:#777}
+.ln.rail{background:repeating-linear-gradient(90deg,#555 0 4px,#fff 4px 7px);height:5px}.ln.sea{background:repeating-linear-gradient(90deg,#1f6fb2 0 5px,transparent 5px 9px)}
+#actions{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:7px;background:rgba(255,255,255,.96);padding:7px;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.2);max-width:calc(100% - 16px);overflow-x:auto;scrollbar-width:none}
+#actions::-webkit-scrollbar{display:none}
+.abtn{display:flex;align-items:center;gap:7px;padding:8px 13px;border-radius:12px;font-weight:800;font-size:13px;background:var(--peach);white-space:nowrap;flex:none;line-height:1.3;text-align:right}
+.abtn small{display:block;font-weight:500;font-size:10.5px;opacity:.85}
+.abtn.go{background:var(--green);color:#fff}.abtn.go.pulse{animation:pulse 1.3s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(39,174,96,.25)}}
+.abtn.pp{background:#2b2b2b;color:#fff}
+.abtn.dpp{background:#fde8e4;color:#c0392b;border:2px solid #f1b4aa}
+.abtn.dpp.off{background:#e3f6ea;color:#1e8449;border-color:#9fd9b5}
+
+/* ---- عناصر نقشه ---- */
+.land{fill:#dcefc0;stroke:#a5cd86;stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.lake{fill:#bfe4f5;stroke:#a5cd86;stroke-width:1;vector-effect:non-scaling-stroke}
+.ggrid path{stroke:#fff;stroke-width:1;opacity:.35;vector-effect:non-scaling-stroke;fill:none}
+.ctry text{font-size:11px;fill:#7b8a63;font-weight:700;paint-order:stroke;stroke:#eef7df;stroke-width:3px}
+.sealbl text{font-size:11px;fill:#5d9cc0;font-style:italic;font-weight:500}
+#geo .ctry{display:none}#geo.z2 .ctry{display:block}
+.rt{fill:none;stroke:var(--c);stroke-width:3.2;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.rt.rail{stroke-width:5}.ties{fill:none;stroke:#fff;stroke-width:2.2;stroke-dasharray:2 6;vector-effect:non-scaling-stroke}
+.rt.sea{stroke-dasharray:7 6;stroke-width:2.6}
+.hit{fill:none;stroke:transparent;stroke-width:18;vector-effect:non-scaling-stroke}
+.edge{transition:opacity .25s}.edge.dim{opacity:.1}.edge.hl .rt{stroke-width:5.5}.edge.hl .rt.rail{stroke-width:7.5}
+.seg.hls .rt{stroke-width:8;filter:drop-shadow(0 0 3px #fff)}
+.dimv{opacity:.12}
+.info{fill:none;stroke:#1e88e5;stroke-width:3.2;stroke-dasharray:.1 8;vector-effect:non-scaling-stroke;stroke-linecap:round;animation:flow 1s linear infinite;opacity:.85;pointer-events:none}
+#game .info{stroke-width:4;stroke-dasharray:.1 10}
+@keyframes flow{to{stroke-dashoffset:-40}}
+.dpp-off .info{animation:none;stroke:#9aa3ab;opacity:.55}
+.pillbg{fill:#2f2a26;opacity:.92}.pillbg.self{fill:#b9770e;stroke:#ffe08a;stroke-width:2}
+.pilltx{fill:#fff;font-size:11px;font-weight:700}
+#geo .comp .cl,#geo .hub .hl{display:none}
+#geo .hub:hover .hl,#geo .comp:hover .cl{display:block!important}
+.selfring{fill:none;stroke:#f5a623;stroke-width:3;stroke-dasharray:4 3;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.comp.sel>circle:not(.selfring){stroke:#f5a623;stroke-width:4}
+.glabel.sel .pillbg{fill:#b9770e}
+.rg{fill:rgba(46,158,91,.2);stroke:#2E9E5B;stroke-width:2;stroke-dasharray:5 4}
+.warn{display:none}.dpp-off .warn{display:block;animation:bob 1s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+.veh .vb{display:none}
+.pingc{transform-box:fill-box;transform-origin:center;fill:none;stroke:#1e88e5;stroke-width:3;animation:ping 1.2s ease-out forwards}.pingc.bad{stroke:#e67e22;stroke-dasharray:3 3}
+.pingk{animation:pk 1.2s ease-out forwards}
+@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(4.4);opacity:0}}@keyframes pk{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+#game polyline{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.groad{stroke:#8d98a5;stroke-width:15}.groad2{stroke:var(--c);stroke-width:2.5;stroke-dasharray:7 8}
+.grail{stroke:#a9835a;stroke-width:12}.grail2{stroke:#4a3a28;stroke-width:9;stroke-dasharray:2.5 7;stroke-linecap:butt!important}
+.gsea{stroke:#5fbdf0;stroke-width:24}.gsea2{stroke:#fff;stroke-width:2;stroke-dasharray:6 12;opacity:.9}
+#game .edge.hl .groad,#game .edge.hl .grail,#game .edge.hl .gsea{filter:drop-shadow(0 0 5px #fff)}
+#game .seg.hls polyline:first-child{stroke:#f5a623}
+.bld:hover{filter:brightness(1.06)}
+
+/* ---- پنل ---- */
+#panel{position:absolute;top:0;bottom:0;left:0;width:410px;max-width:100%;background:#fffaf2;z-index:40;transform:translateX(-106%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:6px 0 24px rgba(0,0,0,.22)}
+#panel.on{transform:none}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--line);flex:none;cursor:default}
+.ph b{font-size:16px;font-weight:900}
+.xbtn{width:32px;height:32px;border-radius:10px;background:rgba(0,0,0,.07);font-size:14px;flex:none}
+#pbody{overflow:auto;padding:14px 16px 28px;flex:1;-webkit-overflow-scrolling:touch}
+#pbody h4{font-size:13.5px;margin:16px 0 6px;color:var(--brown2)}
+.rows{display:flex;flex-direction:column}
+.row{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid rgba(128,128,128,.22);font-size:13.5px}
+.row span{color:var(--brown2);flex:none;max-width:45%}.row b{font-weight:700;text-align:left;word-break:break-word}
+.st{font-style:normal;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px;display:inline-block;white-space:nowrap}
+.st.ok{background:#e3f6ea;color:#1e8449}.st.rev{background:#fff3d6;color:#9a6700}.st.exp{background:#fde8e4;color:#c0392b}.st.na{background:#eceff1;color:#607d8b}.st.lock{background:#ede7f6;color:#5e35b1;margin-right:4px}
+.fine{font-size:11.5px;opacity:.75;margin-top:10px;line-height:1.7}
+.restricted{background:#ede7f6;color:#4527a0;border-radius:12px;padding:12px;font-weight:700;font-size:14px;display:flex;gap:8px;align-items:center}
+.restricted.sm{font-size:12px;padding:7px 10px;margin-top:10px;font-weight:500}
+.almsg{background:#fff3e0;color:#8a4b00;border:1.5px solid #f5c26b;border-radius:12px;padding:11px;font-weight:700;font-size:14px;margin-bottom:8px}
+.almsg.ok{background:#e9f7ee;color:#1e6b3c;border-color:#a9dcbc}
+.evl{display:flex;flex-direction:column;gap:5px}
+.ev{background:rgba(128,128,128,.1);border-radius:10px;padding:6px 10px;font-size:12.5px;display:grid;grid-template-columns:1fr auto;gap:0 8px}
+.ev small{grid-column:1/-1;opacity:.7;font-size:11px;direction:rtl}
+.thint{font-size:12.5px;opacity:.7}
+.erow{display:flex;align-items:center;gap:9px;width:100%;text-align:right;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:7px 10px;margin-bottom:6px;font-weight:700;font-size:13.5px}
+.erow i{width:6px;height:28px;border-radius:3px;flex:none}.erow span{flex:1}.erow small{display:block;font-weight:500;font-size:11.5px;color:var(--brown2)}.erow .ic{transform:rotate(90deg)}
+.dotl{display:inline-block;width:10px;height:10px;border-radius:50%;margin-left:6px}
+.legs{display:flex;flex-direction:column;gap:6px}.leg{display:flex;gap:10px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:7px 10px}
+.leg b{display:block;font-size:13.5px}.leg small{font-size:11.5px;color:var(--brown2)}
+.sbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+/* شناسنامه تیره */
+#panel.dark{background:#2b2b2b;color:#f2f2f2}
+#panel.dark .ph{border-color:#444}#panel.dark .xbtn{background:#444;color:#fff}
+.dark .row span,.dark #pbody h4{color:#b9b9b9}.dark .row{border-color:#444}
+.phead{display:flex;gap:14px;align-items:center;padding-bottom:10px}
+.phead h2{font-size:20px;font-weight:900;line-height:1.4}.phead small{color:#b9b9b9;font-size:12.5px}
+.verif{color:#2ecc71;font-weight:700;font-size:14px;margin-top:4px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.verif em{font-style:normal;font-weight:500;font-size:11.5px;opacity:.85}
+.offnote{background:#4a2d1c;color:#ffcf99;border-radius:10px;padding:8px 10px;font-size:12.5px;margin-top:10px}
+.acc{border-top:1px solid #444}.acc:last-of-type{border-bottom:1px solid #444}
+.acc summary{display:flex;align-items:center;gap:10px;padding:15px 2px;font-size:16.5px;font-weight:800;cursor:pointer;list-style:none}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary span{flex:1}.acc summary .ic:last-child{transition:transform .2s;color:#b9b9b9}.acc[open] summary .ic:last-child{transform:rotate(180deg)}
+.accb{padding:0 2px 16px}
+.tnote{font-size:12px;background:#383838;border-radius:10px;padding:8px 10px;color:#d6d6d6;line-height:1.75}
+.tlabel{font-size:12.5px;color:#b9b9b9;margin:12px 0 7px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1.5px solid #555;border-radius:99px;padding:4px 12px 4px 10px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px;color:#eee}
+.chip i{width:18px;height:6px;border-radius:3px;background:var(--c)}
+.chip.on{background:var(--c);border-color:var(--c);color:#fff}.chip.on i{background:#fff}
+.steps{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.stepw{background:#363636;border-radius:13px;border:1.5px solid transparent;overflow:hidden}
+.stepw.sel{border-color:var(--c);background:#3d3d3d}
+.step{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;text-align:right;color:#f2f2f2}
+.num{width:27px;height:27px;border-radius:50%;background:var(--c);color:#fff;font-weight:900;font-size:13.5px;display:grid;place-items:center;flex:none}
+.sic{color:var(--c);display:grid;place-items:center;flex:none}
+.stt{flex:1;min-width:0}.stt b{display:block;font-size:13.5px;line-height:1.5}.stt small{display:block;font-size:11.5px;color:#b9b9b9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sdate{font-size:11.5px;color:#cfcfcf;flex:none;background:#2b2b2b;border-radius:8px;padding:1px 7px}
+.stepd{padding:2px 12px 12px;border-top:1px dashed #555}.stepd .row{font-size:12.5px;padding:6px 0}
+button.mini{background:#4a4a4a;color:#fff;border-radius:9px;padding:5px 11px;font-size:12px;font-weight:700;display:inline-flex;gap:6px;align-items:center}
+button.mini.wide{width:100%;justify-content:center;margin-top:14px;padding:9px;background:#1e6b3c}
+.legendbox{background:#363636;border-radius:13px;padding:10px 12px;margin-top:14px}
+.legendbox b{display:flex;gap:7px;align-items:center;font-size:13px;margin-bottom:6px}
+.legendbox div{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px}.legendbox span{display:flex;gap:6px;align-items:center}.legendbox i{width:22px;height:6px;border-radius:3px}
+.gap{font-size:12.5px;background:#4a2d1c;color:#ffcf99;border-radius:10px;padding:8px 10px;margin-top:8px;line-height:1.9}
+.tree,.tree ul{list-style:none;margin:0;padding:0}.tree ul{padding-right:14px;border-right:2px solid #555;margin-right:6px}
+.tree li{font-size:12.5px;padding:3px 0}.tree small{color:#b9b9b9}
+.bid{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#444;border-radius:6px;padding:1px 6px;direction:ltr;display:inline-block}
+.lbad{color:#ffb38a}
+.bar{display:grid;grid-template-columns:130px 1fr 44px;gap:8px;align-items:center;font-size:12.5px;padding:4px 0}
+.bar i{height:8px;background:#444;border-radius:4px;overflow:hidden;display:block}.bar u{display:block;height:100%;background:#2ecc71;border-radius:4px}
+.bar b{text-align:left}
+.cert{background:#363636;border-radius:13px;padding:10px 12px;margin-bottom:8px;border-right:4px solid #2ecc71}
+.cert.review{border-color:#f1c40f}.cert.expired{border-color:#e74c3c;opacity:.85}
+.cert>b{font-size:13.5px;display:block;margin-bottom:2px}.cert .row{font-size:12.5px;padding:5px 0}
+.care{margin:0;padding-right:18px;font-size:13.5px}.care li{padding:3px 0}
+.eolc{background:#363636;border-radius:13px;padding:12px;margin-top:10px;font-size:13.5px}.eolc b{font-size:15px}
+.use{color:#7ee2a8;font-size:12.5px;margin-top:6px}
+.tblw{overflow-x:auto;margin-top:8px}.pol{border-collapse:collapse;font-size:11.5px;width:100%;min-width:340px}
+.pol th,.pol td{border:1px solid #4a4a4a;padding:5px 6px;text-align:center}.pol td:first-child,.pol th:first-child{text-align:right}
+.pol .me{background:#1e4d33;color:#fff;font-weight:700}
+.sts{display:flex;flex-wrap:wrap;gap:6px}
+.motto.dk{color:#cfcfcf;font-size:13px;margin-top:22px;text-align:center}
+.dark .fine{color:#bdbdbd}
+
+/* ---- نمودار شبکه ---- */
+#net{position:absolute;left:0;right:0;bottom:0;background:#fffaf2;z-index:35;transform:translateY(106%);transition:transform .3s ease;box-shadow:0 -6px 24px rgba(0,0,0,.2);border-radius:18px 18px 0 0;max-height:62%;display:flex;flex-direction:column}
+#net.on{transform:none}
+#net header{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid var(--line);flex:none}
+#net header small{flex:1;font-size:12px;color:var(--brown2)}
+#netbody{overflow:auto;padding:8px 10px 12px}
+.netc{position:relative;margin:0 auto}
+.ncol{position:absolute;top:0;text-align:center;direction:rtl}.ncol:nth-child(odd){background:rgba(245,166,35,.07)}
+.ncol b{font-size:12px;color:var(--brown2);display:block;padding-top:6px}
+.netc svg{position:absolute;inset:0}
+.nline{fill:none;stroke-width:2.2;opacity:.85}.nhit{fill:none;stroke:transparent;stroke-width:14}
+.nl:hover .nline{stroke-width:4.5;opacity:1}
+.ncard{position:absolute;direction:rtl;background:#fff;border:1.5px solid var(--line);border-radius:10px;font-size:11.5px;font-weight:700;line-height:1.35;text-align:right;padding:2px 14px 2px 6px;display:flex;align-items:center;box-shadow:0 2px 5px rgba(0,0,0,.08)}
+.ncard i{position:absolute;right:0;top:0;bottom:0;width:7px;background:var(--c);border-radius:0 8px 8px 0}
+.ncard.self{border-color:var(--orange);background:#fff6e0;box-shadow:0 0 0 3px rgba(245,166,35,.3)}
+.ncard:hover{border-color:var(--brown2)}
+
+.modal{position:absolute;inset:0;background:rgba(40,25,10,.5);z-index:60;display:none;place-items:center;padding:16px}
+.modal.on{display:grid}
+.mbox{background:#fff;border-radius:22px;border:3px solid var(--brown);box-shadow:0 7px 0 var(--brown);padding:20px 22px;max-width:380px;text-align:center}
+.mbox h3{font-size:20px;font-weight:900}.mbox ol{text-align:right;font-weight:700;font-size:15.5px;padding-right:22px;margin:10px 0}
+.mbox p{font-size:13px;color:var(--brown2);margin-bottom:14px}
+
+@media (min-width:760px){
+  #stage.popen #actions,#stage.popen .hud,#stage.popen #banner,#stage.popen #toasts{left:calc(50% + 205px)}
+  #stage.popen #actions{max-width:calc(100% - 430px)}#stage.popen #banner{width:min(560px,calc(100% - 440px))}
+  #stage.popen .zoom{left:420px}#stage.popen #net{left:410px}
+}
+@media (max-width:759px){
+  body{font-size:14.5px}
+  #clock,#top .demo{display:none}
+  #dppstat{font-size:0;padding:5px 7px;gap:0}#dppstat .ic{width:17px;height:17px}
+  #top{gap:7px;padding:6px 8px}
+  .flows{font-size:11px;padding:4px 9px;gap:9px}
+  #banner{top:96px}#banner div{font-size:12px;padding:6px 10px}
+  .zoom{top:auto;bottom:124px}#legend{top:auto;bottom:124px;max-width:200px}
+  #legend[open]{max-height:50%;overflow:auto}
+  #actions{display:grid;grid-template-columns:repeat(3,1fr);width:calc(100% - 14px);bottom:8px;gap:6px;padding:6px}
+  .abtn{padding:8px 6px;font-size:12px;justify-content:center;white-space:normal;text-align:center}.abtn.dpp{grid-column:span 2}
+  .lgx{display:none}.smx{display:inline!important}
+  #toasts{bottom:176px}
+  #panel{position:fixed;top:auto;left:0;right:0;bottom:0;width:100%;max-height:68%;border-radius:18px 18px 0 0;transform:translateY(106%);box-shadow:0 -6px 24px rgba(0,0,0,.25)}
+  #panel.full{top:0;max-height:none;border-radius:0}
+  #stage.peeking #actions,#stage.peeking .zoom,#stage.peeking #legend{display:none}
+  #panel.peek{transform:translateY(calc(100% - 52px));border-radius:18px 18px 0 0}
+  #panel.peek .ph{cursor:pointer}#panel.peek .ph b::after{content:' ▲ بازگشت به شناسنامه';font-size:12px;font-weight:500;opacity:.8}
+  .bar{grid-template-columns:110px 1fr 40px}
+}
+@media (prefers-reduced-motion:reduce){.info,.selfring,.warn,.abtn.go.pulse,.pillst.bad{animation:none!important}}
+
+.smx{display:none}
+
+</style>
+</head>
+<body>
+<div id="s-product" class="screen on"></div>
+<div id="s-role" class="screen"></div>
+<div id="s-main" class="screen">
+  <header id="top">
+    <button class="ibtn" data-act="home" title="بازگشت به انتخاب محصول" aria-label="بازگشت به انتخاب محصول"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div id="hprod"></div>
+    <button class="chipbtn" data-act="role">تغییر نقش</button>
+    <span class="grow"></span>
+    <span id="dppstat" class="pillst ok"></span>
+    <span id="clock"></span>
+    <span class="demo">داده‌های نمایشی</span>
+  </header>
+  <div id="stage">
+    <svg id="game" class="on" role="img" aria-label="نمای بازی زنجیره تأمین"></svg>
+    <svg id="geo" role="img" aria-label="نقشه جغرافیایی زنجیره تأمین"></svg>
+    <div class="hud">
+      <div id="viewsw" class="seg2"><button data-act="view" data-id="game" class="on">نمای بازی</button><button data-act="view" data-id="geo">نقشه جغرافیایی</button></div>
+      <div class="flows"><span><i class="fl mat"></i>جریان فیزیکی کالا</span><span><i class="fl inf"></i>جریان اطلاعات</span></div>
+    </div>
+    <div id="banner"></div>
+    <div id="toasts"></div>
+    <div class="zoom"><button data-act="zin" aria-label="بزرگ‌نمایی">+</button><button data-act="zout" aria-label="کوچک‌نمایی">−</button><button data-act="zfit" aria-label="نمایش همه">⤢</button></div>
+    <details id="legend"></details>
+    <nav id="actions">
+      <button id="simbtn" class="abtn go" data-act="sim"></button>
+      <button class="abtn ic1" data-act="restart" title="شروع مجدد"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 108-8H7M7 4L4 7l3 3"/></svg><span>شروع مجدد</span></button>
+      <button class="abtn pp" data-act="passport"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18H6zM12 13a3 3 0 100-6 3 3 0 000 6zM9 17h6"/></svg><span class="lgx">شناسنامه دیجیتال محصول</span><span class="smx">شناسنامه محصول</span></button>
+      <button class="abtn" data-act="net"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h4v4H5zM15 5h4v4h-4zM10 15h4v4h-4zM7 9v3h10V9M12 12v3"/></svg><span class="lgx">سطوح زنجیره تأمین</span><span class="smx">شبکه تأمین</span></button>
+      <button id="dppbtn" class="abtn dpp" data-act="dpp"></button>
+    </nav>
+    <section id="net"><header><b>نمودار شبکه تأمین</b><small id="netnote"></small><button class="xbtn" data-act="close-net" aria-label="بستن">✕</button></header><div id="netbody" dir="ltr"></div></section>
+    <aside id="panel"><div class="ph" data-act="peek"><b id="ptitle"></b><button class="xbtn" data-act="close-panel" aria-label="بستن">✕</button></div><div id="pbody"></div></aside>
+  </div>
+  <div id="guide" class="modal"><div class="mbox"><h3>راهنمای سریع</h3><ol><li>نقش خودت را انتخاب کن.</li><li>مسیر مواد و محموله‌ها را بررسی کن.</li><li>DPP را غیرفعال کن و تفاوت را ببین.</li></ol><p>روی ساختمان‌ها، کامیون‌ها، قطارها و کشتی‌ها بزن تا اطلاعات مجاز نقش خودت را ببینی.</p><button class="btn" data-act="guide-close">متوجه شدم</button></div></div>
+</div>
+<script>
+/* world.js — نقشه ساده‌شده و دست‌ساز جهان (طول/عرض جغرافیایی). داده نمایشی؛ مرزها تقریبی‌اند. */
+const LAND = [
+ // اوراسیا
+ [0,[-5.6,36.1,-6.4,36.9,-8.9,37,-9.5,38.7,-8.8,41.8,-9.2,43.2,-7.5,43.7,-3.5,43.5,-1.6,43.4,-1.2,45.8,-2.5,47.3,-4.7,48.4,-1.6,48.7,-1.4,49.7,0.2,49.5,1.6,50.9,3.6,51.4,4.3,52.1,4.9,53.2,7,53.6,8.5,53.6,9.95,53.5,9,53.95,8.9,54.3,8.6,55.5,8.2,56.8,10.5,57.7,10.4,56.5,10.9,56.4,9.9,55.2,10,54.6,11,54.4,11,54,12.3,54.3,13.6,54.5,14.3,53.9,16.5,54.5,18.6,54.8,19.6,54.4,21,55.2,21,56.8,22.5,57.7,24.3,57.2,23.5,59.2,27.8,59.5,30.2,59.9,28,60.5,24.5,60,22,60.3,21.3,61.8,21.5,63.2,25,65,24.2,65.8,22,65.6,21.2,64.5,18,62.5,17.2,60.7,18.9,59.9,16.5,57.5,16.2,56.3,14.3,55.5,12.9,55.5,12.4,56.8,11.2,58.9,10.6,59.5,9.5,58.9,7,58,5.5,58.8,5,61,6.5,62.8,9.5,63.9,12,65.5,14.5,67.5,17,68.4,19,69.8,23,70.6,26,71.1,31,70.2,33.5,69.4,36,69.2,41,68,40,66.2,37,65,38.5,64.3,40.5,64.6,44,66.5,44.5,68.5,48,67.6,54,68.3,60,69,67,69,72,73,80,73.5,87,75.5,100,76.5,105,77.7,113,74,128,72.5,140,72.7,150,70.8,160,69.8,170,70,180,69,190.3,66,180,65,177,62.5,170,60,164,59.8,163,57.8,162.5,56,160,53.2,156.7,51,156,54,155.5,57,160,61,156,61.5,150,59.5,143,59.3,137,54.5,141,53,140.5,49,138,45.5,133,42.8,130.5,42.3,129.5,40.5,127.5,39.5,129.4,37,129.4,35.3,129,35.05,127.5,34.6,126.3,34.5,126.5,36.5,126.6,37.6,125,38,125.2,39.5,124.3,40,121.8,39,121.3,38.8,121.5,40.2,122.2,40.6,121,40.9,119.5,39.8,117.8,39.2,117.7,38.3,118.9,37.6,120.8,37.8,122.6,37.3,120.5,36,119.3,35,120.3,33.8,121,32.5,121.9,31.6,121.9,30.9,120.9,30.3,122,29.9,121.6,28.5,120.3,26.6,119.6,25.5,118.2,24.4,116.7,23.2,114.3,22.5,113.5,22.1,111.5,21.5,110.4,21.3,110.5,20.4,109.7,21.4,108.4,21.6,106.8,20.8,105.9,19,106.6,17.6,108.3,16.1,109.3,13.8,109.3,12.2,108.9,11.3,107.2,10.4,106.8,10.4,106.5,9.5,105,8.6,104.9,10,104.3,10.4,103,11.2,102.3,12.2,100.95,12.7,100.9,13.3,100.5,13.5,99.9,12.5,99.3,10.5,99.5,9.2,100.6,7.2,102.2,6.2,103.4,4.2,104.2,1.4,103.4,1.4,101.3,2.9,100.4,5.5,99.7,6.6,98.3,8,98.6,10.5,98.5,13,97.7,16.5,96.2,16.5,94.3,16,94.5,18.5,92.3,21,91.5,22.5,89,21.8,87,21.3,85,19.5,82.3,16.6,80.2,15.2,80.3,13.1,79.8,10.3,77.6,8.1,76.3,9.9,74.8,12.9,73.4,16,72.8,19,72.7,21,70.4,20.8,69,22.3,70.3,23,68.4,23.5,67,24.8,64.5,25.2,61.5,25.1,57.3,25.6,56.5,27,54.5,26.6,51.5,27.8,50.2,30,48.8,30.3,48,29.5,50,26.7,51.6,25.9,51.5,24.5,54.5,24.2,56.3,26.2,56.6,24.5,59.8,22.5,58.6,20.4,55.2,17.5,52.2,16,48.7,14,45,12.8,43.7,12.9,43.2,13.4,42.8,14.8,42.6,16.5,40.5,19.5,39.1,21.5,37.2,24.8,35.2,28,34.9,29.5,34.3,27.75,33.2,28.9,32.65,29.95,32.6,31.2,34.3,31.3,35,32.8,35.9,35,36.2,36.6,34,36.3,32,36.1,30.6,36.8,28.2,36.7,27.3,37.5,26.4,38.8,26.3,40,29,41,26.2,40.8,24,40.8,22.9,40.5,23.8,39.8,22.9,39.3,24,38,23,36.5,21.7,36.9,21.2,38.2,20,39.6,19.4,41.3,18.5,42.4,15.2,44.2,13.7,45.4,12.3,45.3,12.4,44.2,13.6,43.5,16,41.9,18.5,40.2,17,40.5,17.1,39,15.7,38,15.8,39.6,15.3,40.1,14.2,40.8,12.3,41.7,10.4,42.9,10.2,43.9,8.9,44.4,7.5,43.8,5.3,43.3,3.1,43.1,3.2,41.9,2.2,41.3,0.2,39.9,-0.3,39.4,0.2,38.7,-0.7,37.6,-2.2,36.8,-4.4,36.7]],
+ // آفریقا
+ [0,[32.1,31.2,30,31.3,27,31.3,25,31.6,23,32.6,20.1,32,19.2,30.4,15.5,31.5,13.2,32.9,10.5,33.7,10.2,35.5,11,37,9,37.2,5,36.8,3,36.8,-1,35.7,-5.4,35.75,-6,35.7,-6.9,33.9,-9.3,32.5,-9.8,29.8,-12.9,27.8,-16,23.8,-17,21,-16.3,16.5,-17.5,14.7,-16.6,12.3,-15,10.8,-13.3,8.6,-11.4,6.8,-7.5,4.4,-4,5.2,-2,4.8,1.2,6,4.3,6.3,6,4.3,8.9,4.5,9.7,2.5,9.3,0.3,8.8,-0.7,11.8,-4.8,12.3,-6,13.4,-8.8,13.8,-12.3,12,-15.8,11.8,-18,14.5,-22.9,15.2,-27,16.9,-29.5,18.3,-33.9,20,-34.8,25.7,-34,28.5,-32.8,31,-29.9,32.9,-25.9,35.5,-23.9,34.8,-19.8,37,-17.5,40.6,-15,40.4,-10.5,39.3,-6.8,38.8,-5,39.7,-4,41.5,-1.7,44.5,1.5,48,4.5,50,8,51.3,11.8,48.5,11.3,44.5,10.4,43.2,11.5,42.9,12.4,41,14.7,39.5,15.6,38.5,18,37.3,19.6,37,22,35.6,23.9,33.9,26.5,32.4,29.7]],
+ // بریتانیا، ایرلند، ایسلند
+ [0,[-5.7,50.1,-3.5,50.3,-1,50.7,1.3,51.15,1.6,52.7,0.3,53,-0.2,54.1,-1.5,55,-2,56,-1.8,57.5,-4,57.7,-3.2,58.6,-5,58.6,-6.2,56.7,-5,55,-3.4,54.9,-3,53.4,-4.5,53.3,-4.3,52.2,-5.2,51.8,-3,51.4,-4.3,51.1]],
+ [0,[-10,52,-9.5,54.2,-7.5,55.3,-5.6,54.6,-6,53,-6.4,52.2,-8.5,51.6]],
+ [0,[-24,65.5,-22,66.4,-16,66.5,-13.6,65,-18.5,63.4,-22.5,63.9]],
+ // سیسیل، ساردینیا
+ [0,[12.5,38,15.6,38.2,15.1,36.7,13,37.4]],
+ [0,[8.3,41.2,9.7,41,9.6,39.2,8.5,39]],
+ // سریلانکا، ماداگاسکار
+ [0,[79.8,9.6,81.2,8.5,81.8,7,80.6,5.9,79.8,7]],
+ [0,[49.3,-12,50.5,-15.5,47.8,-24.5,45.2,-25.5,43.3,-22,44.3,-17,47,-15]],
+ // سوماترا، بورنئو، جاوه، سولاوسی
+ [0,[95.3,5.6,98,4.2,100,2.2,102.3,0.9,103.6,0,104.5,-1.8,106,-3,105.8,-5.8,104.3,-5.9,102.3,-4,100.4,-1,98.7,1.7,97,3.3]],
+ [0,[109,1.5,110.3,1.7,111.5,2.8,113,3.2,115,5,116.8,7,118.8,5.5,117.7,4.2,118,2,117.5,0.5,116.5,-1.5,116,-3.8,114.5,-4,113,-3.2,111.5,-3.3,110.2,-2.8,109.3,-0.5]],
+ [0,[105.5,-6.5,108.5,-6.6,110.8,-6.4,112.7,-6.9,114.5,-7.8,114.3,-8.6,111,-8.2,108,-7.8,106,-7.2]],
+ [0,[119.5,-5.5,120.5,-2.8,119.3,0.2,120.8,1.3,124.8,1.5,123,0.3,121,0.2,121.5,-1.8,123.3,-1,122.2,-3.5,123,-5.2,121.5,-4.7,120.4,-5.6]],
+ // فیلیپین، تایوان، هاینان
+ [0,[122,7,123.5,8.6,125.5,9.8,126.5,7.5,125.6,6,124,6.3,123,7.5]],
+ [0,[120,16,120.5,18.5,122.2,18.4,122.3,16.5,121.6,14.3,124,13,125.5,12.2,125.2,10.8,123.5,10.3,122.5,11.8,121,13.6,120.3,14.6]],
+ [0,[121,25.2,122,25,121.5,23.5,120.9,22,120.2,22.7,120.1,23.6,120.6,24.6]],
+ [0,[108.7,19.3,109.6,20,110.9,20,111,19,110,18.3,108.8,18.5]],
+ // ژاپن
+ [0,[129.8,32.8,130,33.4,130.9,34,132.5,35.4,135.8,35.6,137,37.2,138.8,37.8,140,39.8,140.3,41.3,141.5,41.2,142,39.5,141,37.5,140.8,35.7,139.8,35,138.5,34.6,136.9,34.3,136.3,33.5,135.4,33.5,135.3,34.55,134.6,34.2,134.7,33.7,134.2,33.3,133,32.8,132,33.6,131.8,32.9,131.4,31.4,130.6,31.2,130.2,32.2]],
+ [0,[140.2,41.6,141,43.2,141.8,45.4,145.2,44,145.5,43.2,143.5,42,141.2,42.4,140.6,41.8]],
+ // استرالیا، گینه نو، نیوزیلند
+ [0,[113.5,-22,114.2,-26,115.5,-31.5,115,-34.3,118,-35,123.5,-33.9,129,-31.6,133.5,-32.2,135.5,-34.8,137.8,-33,138.5,-35.5,140.5,-38,144.5,-38.3,147,-38.8,150,-37.3,151.3,-33.8,153.3,-28.5,153,-25,149.5,-22,146.3,-19,145.5,-15,143.5,-14.2,142.5,-10.8,141.6,-13,140.8,-17.5,139,-17.3,135.8,-15,136.8,-12.2,132.6,-11.5,130.8,-12.4,129.5,-14.9,127.5,-14,125,-15.5,122.2,-17.8,121.5,-19,118.9,-20.2,116.5,-20.6]],
+ [0,[131,-0.8,134,-0.8,137.5,-1.6,141,-2.6,145.5,-4.6,147.5,-6,150.5,-10.3,147,-9.6,144,-7.6,141,-9,138,-8.2,137.5,-5.5,133.5,-4,132,-2.6]],
+ [0,[172.7,-34.5,175.5,-36.5,178.4,-37.7,176.9,-40,174.9,-41.4,173.8,-39.3,174.6,-37]],
+ [0,[172.8,-40.6,174.3,-41.8,171.2,-44.3,170.6,-46,168.4,-46.6,166.5,-45.8,170.3,-42.5]],
+ // آمریکای شمالی (با جابه‌جایی ۳۶۰)
+ [1,[-168,65.6,-162,67,-166.5,68.4,-156.5,71.3,-141,69.8,-128,70.3,-115,68.8,-100,68.5,-94,71.8,-85,69.5,-80,67.5,-78.5,62.4,-70,62.5,-65,60.3,-61.5,56.5,-56,52.5,-59.5,49.8,-65,48.5,-64.5,46,-61,45.5,-65.5,43.6,-70,43.7,-70.5,41.7,-74,40.5,-75.5,37.8,-76,35,-80.5,32,-81.3,29.5,-80.2,25.5,-81.8,25.8,-82.8,29,-85,29.8,-89.5,30.2,-90,29.2,-94,29.6,-97.3,27.5,-97.7,22.5,-96,19,-94.5,18.3,-91.5,18.6,-90.5,21,-87,21.5,-87.8,17.5,-88.5,15.8,-84,15.8,-83.3,12.5,-83.6,10.5,-82,9,-79.5,9.5,-77.5,8.6,-78.5,8,-80.5,7.3,-83,8.3,-85.5,10,-87.5,13,-91.5,13.9,-94.5,16.2,-97,15.8,-101.5,17.5,-105.5,20,-105.5,22.5,-109.5,26,-112.5,30,-113,31.2,-117.1,32.6,-120.5,34.5,-122,36.8,-124.2,40.3,-124,46,-123,48.5,-125.5,49.5,-128.5,52.5,-131.5,55,-136,58.5,-141,59.9,-147.5,61,-151.5,59.5,-156.5,57,-162,55,-158,58.5,-162.5,60,-165.5,62.5,-161,64.2,-165.5,64.5]],
+ // آمریکای جنوبی
+ [1,[-77.3,8,-75.5,10.8,-71.5,12.2,-67,10.6,-61.5,10.3,-57,6,-51.5,4.3,-50,0,-44.5,-2.5,-39,-3.5,-35.2,-5.5,-35,-8.5,-38.8,-13.5,-39.5,-18,-41,-22,-44.5,-23.3,-48.3,-25.8,-48.8,-28.5,-52.2,-32.5,-54,-34.6,-57,-36.5,-57.3,-38.3,-62.2,-39,-62.5,-41.2,-65,-42.5,-65.5,-45.2,-67.6,-46.5,-65.8,-48,-69,-51,-68.3,-52.8,-71,-53.9,-74.5,-52,-75.5,-48,-73.5,-43,-73.8,-39.5,-72.8,-36,-71.5,-31,-71.4,-27,-70.4,-23.4,-70.2,-18.5,-72.5,-16.8,-76.2,-13.8,-77.3,-11.8,-79.3,-7.5,-81.2,-5.5,-80.3,-2.8,-80.8,-0.8,-79.8,1.2,-78.5,2.6,-77.3,4.5,-77.8,7]],
+ // گرینلند
+ [1,[-73,78,-60,82,-30,83,-18,80,-21,72.5,-26,68.5,-33,67,-40,65,-43.5,60,-49,61.5,-53,66.5,-54.5,70.5,-60,76]]
+];
+/* دریاهای داخلی که روی خشکی کشیده می‌شوند */
+const WATER = [
+ [0,[28,41.3,29.2,41.2,31.5,41.2,33.5,42,35.2,42,36.8,41.3,38.5,41,41.5,41.5,41.6,42.6,39.5,43.6,38,44.5,37.5,45.3,38.5,46.3,39.2,47.2,37.5,47,35,46.2,36.5,45.3,35.5,45,33.6,44.4,32.5,45.5,33.5,46.1,31.5,46.6,30.7,46.2,29.7,45.2,28.7,44.2,28,43.2,27.5,42.5]],
+ [0,[49,46.5,51.5,47,53,46.5,52.5,45.3,51,44.5,50.3,43.5,52.5,42.5,53.5,40.5,53,39,54,37.5,52,36.8,50.3,37.2,49,38.3,49.5,40.3,47.8,42.5,47,44.5,47.5,45.8]],
+ [1,[-94.5,60,-92,57,-85,55.5,-82.3,52.5,-79.5,51.5,-79,54.5,-76.8,56.5,-78.3,59,-77.5,62.3,-82,63.5,-87,64,-92,62.5]]
+];
+/* عوارض تزئینی: m کوه، f جنگل، a کشاورزی، n معدن */
+const DECOR = [
+ ['m',82,29.5],['m',86,28.6],['m',90,29],['m',78,32],['m',94,29.8],['m',8,46.4],['m',11,46.8],['m',13.5,47.2],['m',14,64],['m',16,66.5],['m',12,62],['m',60,57],['m',60,62],['m',-70,-17],['m',-69.5,-28],['m',-71,-36],['m',-112,42],['m',-108,38],['m',-118,50],['m',44,41.5],['m',70,38],['m',100,30],['m',103,34],['m',36,9],['m',138.2,36.2],
+ ['f',22,53.4],['f',24.5,54.5],['f',18,52.2],['f',27,57],['f',40,58],['f',55,59],['f',75,60],['f',95,58],['f',110,57],['f',125,56],['f',-62,-3],['f',-56,-7],['f',-66,-8],['f',20,0],['f',24,-3],['f',16,-2],['f',101,17],['f',114,1],['f',102,-1],['f',-80,50],['f',-95,53],['f',-120,57],['f',15,60.5],['f',26,63],['f',10,50.2],
+ ['a',75,23.5],['a',78,20],['a',77,27],['a',100.5,15.5],['a',105.5,10.5],['a',115,33],['a',112,29],['a',2,47],['a',19,47],['a',33,49],['a',-95,40],['a',-88,41],['a',-55,-24],['a',145,-33],['a',30,-2],
+ ['n',119.5,-23],['n',121,-27],['n',-68.5,-21],['n',-69.5,-25.5],['n',26.5,-11.5],['n',28,-13],['n',20.5,67.3],['n',110,41],['n',66,48],['n',28,-27]
+];
+const COUNTRY_LABELS = [
+ ['هند',79,23.5],['چین',104,35],['ویتنام',105.2,21.6],['تایلند',101.2,16],['کره جنوبی',127.9,36.6],['ژاپن',138.4,35.6],['تایوان',121,23.8],['استرالیا',134,-25],['شیلی',-70.6,-30],['کنگو',23,-4],['تانزانیا',35,-6.5],['لهستان',19.5,52.2],['آلمان',10.3,51],['سوئد',15.5,62],['نروژ',8.5,61],['هلند',5.6,52.3],['فرانسه',2.5,46.8],['اسپانیا',-3.5,40],['ایران',54,32.5],['مصر',29.5,26.5],['روسیه',90,62],['برزیل',-52,-10],['ایالات متحده',-100,39],['کانادا',-105,57],['اندونزی',113.5,-1],['مالزی',102,4.2],['عربستان',45,24],['ترکیه',35,39]
+];
+const SEA_LABELS = [['اقیانوس هند',75,-12],['اقیانوس آرام',-150,10],['اقیانوس اطلس',-22,30],['دریای مدیترانه',17,34.2],['دریای چین جنوبی',114,13],['دریای شمال',3,56.5],['دریای سرخ',38.5,20.5],['دریای عرب',63,16],['خلیج بنگال',88,14]];
+
+/* data.js — محصولات، شرکت‌ها، مسیرهای لجستیکی (همه داده‌ها ساختگی و نمایشی‌اند) */
+const TIER_COLOR = {3:'#2E9E5B',2:'#2F80ED',1:'#F2994A',0:'#8E5BD9'};
+const TIER_NAME = {3:'سطح ۳ – مواد اولیه',2:'سطح ۲ – فرآوری',1:'سطح ۱ – قطعات',0:'سطح ۰ – تولید نهایی و توزیع'};
+const MODE_NAME = {road:'جاده‌ای',rail:'ریلی',sea:'دریایی'};
+const MODE_VEH = {road:'کامیون',rail:'قطار باری',sea:'کشتی باری'};
+const REGION = {'هند':['جنوب آسیا',78,22],'تایلند':['جنوب شرق آسیا',102,14],'ویتنام':['جنوب شرق آسیا',102,14],'کره جنوبی':['شرق آسیا',122,34],'چین':['شرق آسیا',122,34],'ژاپن':['شرق آسیا',122,34],'تایوان':['شرق آسیا',122,34],'استرالیا':['اقیانوسیه',128,-25],'شیلی':['آمریکای جنوبی',-66,-24],'کنگو':['آفریقای مرکزی',24,-8],'لهستان':['اروپای مرکزی',17,52],'آلمان':['اروپای مرکزی',17,52],'سوئد':['شمال اروپا',18,65]};
+
+/* کریدورهای دریایی مشترک (نمونه فرضی اما از نظر جغرافیایی معقول) */
+const IND_MAL = [[80.8,5],[88,5.5],[94,6.3],[98.2,5],[100.3,3.2],[102.3,1.75],[103.6,1.05],[104.8,1.6]];
+const rev = a => a.slice().reverse();
+const SUEZ = [[72,8.5],[60,12.5],[51.5,13.2],[45.5,12],[43.35,12.6],[41.9,15],[40.3,18],[37.9,22],[35.7,25.5],[34,27.2],[33.4,28.3],[32.7,29.4],[32.5,29.95],[32.4,31.3],[31.5,32.5],[25,33.8],[18,35.5],[11.8,37.4],[8,38.2],[0,36.6],[-4.5,36.15],[-5.5,35.93],[-6.8,36],[-9.8,36.8],[-10.2,39],[-10,43.5],[-6,47.5],[-5.6,48.8],[-3,49.5],[-1.6,50.1],[0.8,50.5],[1.55,51.1],[2.8,51.9]];
+const NSEA = [[4,53.4],[6.5,54],[8.2,54.15],[8.75,53.9]];
+const KR_S = [[128.6,33.8],[125.5,30],[123,26.5],[122.8,24],[121.3,21.3]];
+const TONKIN = [[111.5,17.6],[108.5,17.6],[107.6,19.3],[107,20.5],[106.8,20.8]];
+
+const PRODUCTS = {
+ shoe:{ id:'shoe', name:'کفش ورزشی', model:'کفش ورزشی مدل آریا', brand:'آریا', code:'PRD-1024', pid:'DPP-AR-1024-7F3K', lot:'LOT-AR-0911', madeIn:'ویتنام', market:['آلمان',10.5,51.2],
+  blurb:'سفر کفش را از مزارع پنبه و منابع لاستیک تا کارخانه تولید و فروشگاه دنبال کن.',
+  maker:'شرکت پوشاک ورزشی آریا (فرضی) – ویتنام',
+  comp:[['رویه پنبه‌ای',38],['زیره لاستیک طبیعی',27],['کفی فوم EVA',20],['بند پلی‌استر',10],['مواد رنگی و چسب',5]],
+  sustain:[['ردپای کربن (برآورد نمایشی)','۹٫۸ کیلوگرم CO₂ معادل','ok'],['محتوای بازیافتی','۱۸٪ – پلی‌استر بازیافتی در بند','ok'],['مصرف آب در تولید','اطلاعات موجود نیست','na'],['بازیافت‌پذیری','زیره و کفی قابل جداسازی‌اند','ok']],
+  certs:[['استاندارد منسوجات ارگانیک (نمونه آموزشی)','نهاد گواهی فرضی «الف»','۱۴۰۲/۱۱/۰۱','۱۴۰۴/۱۱/۰۱','ok'],['مدیریت پایدار لاستیک (نمونه آموزشی)','نهاد گواهی فرضی «ب»','۱۴۰۳/۰۲/۱۵','۱۴۰۵/۰۲/۱۵','review'],['ایمنی مواد شیمیایی (نمونه آموزشی)','نهاد گواهی فرضی «ج»','۱۴۰۱/۰۶/۰۱','۱۴۰۳/۰۶/۰۱','expired']],
+  care:['با دستمال نم‌دار و شوینده ملایم تمیز کنید.','در ماشین لباسشویی و خشک‌کن قرار ندهید.','دور از نور مستقیم و در جای خشک نگهداری کنید.','بند و کفی قابل تعویض‌اند؛ پیش از دور انداختن، تعمیر را بررسی کنید.'],
+  eol:[['تعمیر','تعویض زیره، کفی یا بند عمر کفش را افزایش می‌دهد.','کد قطعات قابل تعویض و نوع چسب زیره'],['استفاده مجدد','کفش سالم می‌تواند اهدا یا دست‌دوم فروخته شود.','تاریخ تولید و وضعیت اصالت محصول'],['جداسازی مواد','رویه، کفی و زیره برای بازیافت از هم جدا می‌شوند.','ترکیب مواد هر قطعه و روش اتصال آن‌ها'],['بازیافت','لاستیک به گرانول و پارچه به الیاف بازیافتی تبدیل می‌شود.','درصد ترکیبات و فهرست مواد شیمیایی محدودشده']],
+  branches:[['cotton','پنبه و پارچه','#F28C28'],['rubber','لاستیک و زیره','#8D6E63'],['foam','فوم و کفی','#EC407A'],['lace','الیاف و بند کفش','#2F80ED'],['final','محصول نهایی','#27AE60']],
+  companies:[
+   ['cot','مزرعه پنبه سبزدشت',3,'farm','راجکوت','هند',70.8,22.3,'پنبه خام'],
+   ['rub','باغ لاستیک هِوِآ',3,'forest','سورات‌تانی','تایلند',99.1,8.9,'لاستیک طبیعی'],
+   ['pet','پتروشیمی اولسان‌کِم',3,'plant','اولسان','کره جنوبی',129.25,35.5,'مواد پتروشیمی'],
+   ['dye','رنگ‌دانه شائوشینگ',3,'plant','شائوشینگ','چین',120.6,29.95,'مواد رنگی'],
+   ['yarn','نخ‌ریسی دانانگ',2,'factory','دانانگ','ویتنام',108,15.95,'نخ پنبه‌ای'],
+   ['fib','الیاف مصنوعی های‌فونگ',2,'factory','های‌فونگ','ویتنام',106.4,20.9,'الیاف پلی‌استر'],
+   ['rbp','فرآوری لاستیک بین‌فوک',2,'factory','بین‌فوک','ویتنام',106.9,11.75,'لاستیک فرآوری‌شده'],
+   ['foam','فوم‌سازی وونگ‌تائو',2,'factory','وونگ‌تائو','ویتنام',107.15,10.6,'فوم EVA'],
+   ['lace','کارخانه تولید بند کفش',1,'factory','نها‌ترانگ','ویتنام',109.1,12.3,'بند کفش'],
+   ['upr','کارخانه تولید رویه کفش',1,'factory','کوی‌نیون','ویتنام',109.1,13.8,'رویه کفش'],
+   ['ins','کارخانه تولید کفی کفش',1,'factory','کان‌تو','ویتنام',105.75,10.05,'کفی کفش'],
+   ['sol','کارخانه تولید زیره کفش',1,'factory','بوون‌ماتوت','ویتنام',108.05,12.67,'زیره کفش'],
+   ['asm','کارخانه مونتاژ کفش آریا',0,'assembly','هوشی‌مین','ویتنام',106.65,10.85,'کفش ورزشی'],
+   ['wh','انبار محصول نهایی',0,'warehouse','کای‌مپ','ویتنام',107,10.55,'کفش ورزشی'],
+   ['dc','مرکز توزیع لایپزیگ',0,'dc','لایپزیگ','آلمان',12.4,51.35,'کفش ورزشی'],
+   ['st','فروشگاه ورزشی برلین',0,'store','برلین','آلمان',13.4,52.5,'کفش ورزشی']],
+  edges:[
+   ['cot','yarn','پنبه خام','cotton',[['road','مرکز بارگیری احمدآباد',[72.6,23]],['rail','بندر موندرا',[69.7,22.68]],['sea','بندر دانانگ',[69.2,22.8],[68,22.6],[68.5,18],[73.5,9],[78,6],...IND_MAL,[106.5,5],[109.2,8.5],[110.2,12.5],[109.3,15.5],[108.35,16.12]],['road',null]]],
+   ['rub','rbp','لاستیک طبیعی','rubber',[['road','بندر سونگ‌خلا',[100.6,7.2]],['sea','بندر کای‌مپ',[100.9,7.5],[102.5,7.6],[104.6,7.6],[106.8,8.6],[107.6,9.8],[107.05,10.42]],['road',null]]],
+   ['pet','foam','مواد پتروشیمی','foam',[['road','بندر بوسان',[129.05,35.08]],['sea','بندر کای‌مپ',...KR_S,[115,15],[110.5,11],[108,9.8],[107.05,10.42]],['road',null]]],
+   ['pet','fib','مواد پتروشیمی','lace',[['road','بندر بوسان',[129.05,35.08]],['sea','بندر های‌فونگ',...KR_S,[116.5,19.5],...TONKIN],['road',null]]],
+   ['dye','fib','مواد رنگی','lace',[['road','بندر نینگبو',[121.9,29.92]],['sea','بندر های‌فونگ',[122.8,29],[120.6,26],[119.3,24],[116,21.5],[112,19.5],...TONKIN],['road',null]]],
+   ['yarn','upr','نخ پنبه‌ای','cotton',[['road',null]]],
+   ['fib','lace','الیاف پلی‌استر','lace',[['rail',null,[105.6,18.8],[106.4,17.4],[107.9,16],[108.9,13.9]]]],
+   ['rbp','sol','لاستیک فرآوری‌شده','rubber',[['road',null]]],
+   ['foam','ins','فوم EVA','foam',[['road',null,[106.6,10.7]]]],
+   ['upr','asm','رویه کفش','cotton',[['rail',null,[108.9,12.4],[108.2,11.3]]]],
+   ['lace','asm','بند کفش','lace',[['rail',null,[108.8,11.9],[108.2,11.3]]]],
+   ['ins','asm','کفی کفش','foam',[['road',null]]],
+   ['sol','asm','زیره کفش','rubber',[['road',null]]],
+   ['asm','wh','کفش ورزشی','final',[['road',null]]],
+   ['wh','dc','کفش ورزشی','final',[['road','بندر کای‌مپ',[107.05,10.42]],['sea','بندر هامبورگ',[107.6,9.8],[106.5,5],...rev(IND_MAL),...SUEZ,...NSEA,[9.9,53.55]],['rail',null]]],
+   ['dc','st','کفش ورزشی','final',[['road',null]]]]
+ },
+ phone:{ id:'phone', name:'گوشی هوشمند', model:'گوشی هوشمند نوا X5', brand:'نوا', code:'PRD-2087', pid:'DPP-NV-2087-Q9M2', lot:'LOT-NV-0911', madeIn:'چین', market:['آلمان',10.5,51.2],
+  blurb:'با زنجیره پیچیده تأمین مواد معدنی، قطعات الکترونیکی و تولید گوشی آشنا شو.',
+  maker:'شرکت الکترونیک نوا (فرضی) – چین',
+  comp:[['بدنه آلومینیومی و شیشه',34],['باتری لیتیوم‌یون',22],['نمایشگر OLED',18],['برد و پردازنده',16],['دوربین و حسگرها',10]],
+  sustain:[['ردپای کربن (برآورد نمایشی)','۵۸ کیلوگرم CO₂ معادل','ok'],['محتوای بازیافتی','۲۵٪ – آلومینیوم بازیافتی بدنه','ok'],['منشأ کبالت','در انتظار بررسی زنجیره تأمین','review'],['شاخص تعمیرپذیری','۷٫۲ از ۱۰ (نمایشی)','ok'],['مصرف آب در تولید','اطلاعات موجود نیست','na']],
+  certs:[['محدودیت مواد خطرناک در تجهیزات الکترونیکی (نمونه آموزشی)','نهاد گواهی فرضی «الف»','۱۴۰۳/۰۱/۲۰','۱۴۰۵/۰۱/۲۰','ok'],['تأمین مسئولانه مواد معدنی (نمونه آموزشی)','نهاد گواهی فرضی «ب»','۱۴۰۳/۰۷/۰۱','۱۴۰۴/۰۷/۰۱','review'],['ایمنی باتری (نمونه آموزشی)','نهاد گواهی فرضی «ج»','۱۴۰۰/۱۲/۰۱','۱۴۰۲/۱۲/۰۱','expired']],
+  care:['باتری را بین ۲۰ تا ۸۰ درصد نگه دارید تا عمر آن بیشتر شود.','دستگاه را در دمای بالا یا زیر نور مستقیم خورشید رها نکنید.','از شارژر استاندارد استفاده کنید.','برای تعویض باتری یا نمایشگر به مراکز تعمیر مجاز مراجعه کنید.'],
+  eol:[['تعمیر','تعویض نمایشگر یا درگاه شارژ به‌جای خرید دستگاه نو.','نقشه جداسازی قطعات و کد قطعات یدکی'],['تعویض باتری','باتری فرسوده قابل تعویض است.','مشخصات، ظرفیت و ترکیب شیمیایی باتری'],['بازسازی','دستگاه پس از آزمون و پاک‌سازی دوباره عرضه می‌شود.','تاریخچه تعمیرات و شناسه دسته تولید'],['بازیابی قطعات','دوربین، برد و نمایشگر سالم جدا و دوباره استفاده می‌شوند.','فهرست قطعات و سازگاری آن‌ها'],['بازیافت پسماند الکترونیکی','لیتیوم، کبالت، مس و طلا بازیابی می‌شوند.','ترکیبات باتری و اطلاعات جداسازی ایمن قطعات']],
+  branches:[['battery','لیتیوم، کبالت و باتری','#F28C28'],['display','شیشه و نمایشگر','#00ACC1'],['chip','سیلیس و پردازنده','#9B51E0'],['pcb','مس و برد الکترونیکی','#2F80ED'],['body','فلز و بدنه','#78909C'],['camera','مواد حسگر و دوربین','#EC407A'],['final','محصول نهایی','#27AE60']],
+  companies:[
+   ['li','معدن لیتیوم پیلبارا',3,'mine','پیلبارا','استرالیا',118.9,-22.3,'کنسانتره لیتیوم'],
+   ['co','معدن کبالت کولوِزی',3,'mine','کولوِزی','کنگو',25.5,-10.7,'هیدروکسید کبالت'],
+   ['cu','معدن مس کالاما',3,'mine','کالاما','شیلی',-68.9,-22.45,'کنسانتره مس'],
+   ['si','تأمین‌کننده سیلیس لیان‌یون',3,'mine','لیان‌یون‌گانگ','چین',118.8,34.6,'سیلیس پرخلوص'],
+   ['re','مواد معدنی بائوتو',3,'mine','بائوتو','چین',109.85,40.65,'عناصر خاکی کمیاب'],
+   ['bm','فرآوری مواد باتری چانگژو',2,'factory','چانگژو','چین',119.95,31.8,'مواد کاتدی باتری'],
+   ['mp','فرآوری فلزات تونگ‌لینگ',2,'factory','تونگ‌لینگ','چین',117.8,30.95,'فویل و ورق فلزی'],
+   ['wf','ویفر نیمه‌رسانای شین‌چو',2,'factory','شین‌چو','تایوان',121,24.7,'ویفر سیلیکونی'],
+   ['gl','شیشه صنعتی آسان',2,'factory','آسان','کره جنوبی',127,36.8,'شیشه نمایشگر'],
+   ['em','مواد الکترونیکی اوساکا',2,'factory','اوساکا','ژاپن',135.6,34.75,'مواد حسگر و آهنربا'],
+   ['bat','کارخانه تولید باتری',1,'factory','نینگ‌ده','چین',119.4,26.7,'باتری'],
+   ['dsp','کارخانه تولید نمایشگر',1,'factory','گومی','کره جنوبی',128.35,36.1,'نمایشگر'],
+   ['cpu','کارخانه تولید پردازنده',1,'factory','تاینان','تایوان',120.45,23.1,'پردازنده'],
+   ['pcb','کارخانه تولید برد الکترونیکی',1,'factory','سوژو','چین',120.6,31.3,'برد الکترونیکی'],
+   ['cam','کارخانه تولید دوربین',1,'factory','فوکوئوکا','ژاپن',130.6,33.5,'ماژول دوربین'],
+   ['body','کارخانه تولید بدنه',1,'factory','چانگشا','چین',113,28.2,'بدنه گوشی'],
+   ['asm','کارخانه مونتاژ گوشی نوا',0,'assembly','ژنگژو','چین',113.65,34.75,'گوشی هوشمند'],
+   ['qc','مرکز کنترل کیفیت',0,'qc','ووهان','چین',114.3,30.6,'گوشی هوشمند'],
+   ['wh','انبار محصول نهایی',0,'warehouse','شنژن','چین',114.05,22.65,'گوشی هوشمند'],
+   ['dc','مرکز توزیع دویسبورگ',0,'dc','دویسبورگ','آلمان',6.76,51.43,'گوشی هوشمند'],
+   ['st','فروشگاه دیجیتال فرانکفورت',0,'store','فرانکفورت','آلمان',8.68,50.11,'گوشی هوشمند']],
+  edges:[
+   ['li','bm','کنسانتره لیتیوم','battery',[['road','بندر پورت‌هدلند',[118.6,-20.3]],['sea','بندر شانگهای',[117.5,-14],[116.2,-8.8],[117.8,-5],[118.2,-1.5],[118.9,1.2],[120.5,3.5],[124.5,4.5],[127.5,6],[128,12],[126.5,20],[124,27],[122.6,30.5],[121.9,31]],['road',null]]],
+   ['co','bm','هیدروکسید کبالت','battery',[['rail','بندر دارالسلام',[31.5,-9],[39.3,-6.8]],['sea','بندر شانگهای',[40.5,-6.5],[43,-5],[55,-1],[70,3],...IND_MAL,[107.5,5.5],[111.5,10],[115.5,16],[119,21],[119.3,23.5],[120.6,26],[122.8,29],[122.6,30.5],[121.9,31]],['road',null]]],
+   ['cu','mp','کنسانتره مس','pcb',[['road','بندر آنتوفاگاستا',[-70.4,-23.65]],['sea','بندر شانگهای',[-75,-23],[-100,-18],[-140,-5],[-175,8],[165,16],[145,21],[130,26],[123.5,30.2],[121.9,31]],['rail',null]]],
+   ['si','wf','سیلیس پرخلوص','chip',[['road','بندر لیان‌یون‌گانگ',[119.4,34.75]],['sea','بندر شین‌چو',[121.5,34],[123,30],[121.8,26.5],[120.6,25.5],[120.85,24.9]],['road',null]]],
+   ['si','gl','سیلیس پرخلوص','display',[['road','بندر لیان‌یون‌گانگ',[119.4,34.75]],['sea','بندر پیونگ‌تِک',[121,35],[124.5,36.3],[126.55,36.95]],['road',null]]],
+   ['re','em','عناصر خاکی کمیاب','camera',[['rail','بندر تیانجین',[113.5,40.3],[117.75,39]],['sea','بندر اوساکا',[119.5,38.6],[121.3,38.3],[123.2,37.6],[124.2,34.5],[126.5,32.8],[130.5,30.5],[132.2,30.9],[133.8,32.4],[135,33.3],[134.98,34.3],[135.25,34.5]],['road',null]]],
+   ['bm','bat','مواد کاتدی باتری','battery',[['rail',null,[119.3,29.5]]]],
+   ['mp','pcb','فویل مس','pcb',[['road',null]]],
+   ['mp','body','ورق فلزی','body',[['rail',null]]],
+   ['wf','cpu','ویفر سیلیکونی','chip',[['road',null]]],
+   ['gl','dsp','شیشه نمایشگر','display',[['road',null]]],
+   ['em','cam','مواد حسگر','camera',[['rail',null,[133.5,34.6],[131.2,34.05]]]],
+   ['bat','asm','باتری','battery',[['rail',null,[116.5,29.5]]]],
+   ['dsp','asm','نمایشگر','display',[['road','بندر بوسان',[129.05,35.08]],['sea','بندر چینگ‌دائو',[128.8,34.5],[126,33.6],[124,35],[121.5,35.6],[120.45,36]],['rail',null]]],
+   ['cpu','asm','پردازنده','chip',[['road','بندر کائوسیونگ',[120.3,22.65]],['sea','بندر شیامِن',[119.6,22.9],[118.6,24],[118.2,24.4]],['rail',null,[115.5,28.5]]]],
+   ['pcb','asm','برد الکترونیکی','pcb',[['rail',null]]],
+   ['cam','asm','ماژول دوربین','camera',[['road','بندر هاکاتا',[130.4,33.62]],['sea','بندر شانگهای',[129.9,34],[127,32.5],[123.5,31.3],[121.9,31]],['rail',null]]],
+   ['body','asm','بدنه گوشی','body',[['rail',null]]],
+   ['asm','qc','گوشی هوشمند','final',[['rail',null]]],
+   ['qc','wh','گوشی هوشمند','final',[['rail',null,[113.3,26]]]],
+   ['wh','dc','گوشی هوشمند','final',[['road','بندر یانتیان',[114.28,22.55]],['sea','بندر روتردام',[114.6,21.8],[112,17],[110.5,11],[107.5,5.5],...rev(IND_MAL),...SUEZ,[4.1,51.95]],['rail',null]]],
+   ['dc','st','گوشی هوشمند','final',[['road',null]]]]
+ },
+ chair:{ id:'chair', name:'صندلی چوبی', model:'صندلی چوبی مدل بلوط', brand:'بلوط', code:'PRD-3051', pid:'DPP-BL-3051-K4T8', lot:'LOT-BL-0911', madeIn:'آلمان', market:['آلمان',11.58,48.14],
+  blurb:'مسیر چوب، فلز و سایر مواد را از منابع اولیه تا تولید یک صندلی بررسی کن.',
+  maker:'شرکت مبلمان بلوط (فرضی) – آلمان',
+  comp:[['چوب بلوط و صفحه چندلا',78],['اتصالات فولادی',12],['رزین و چسب',6],['لاک و پوشش سطح',4]],
+  sustain:[['ردپای کربن (برآورد نمایشی)','۲۱ کیلوگرم CO₂ معادل','ok'],['منشأ چوب','جنگل مدیریت‌شده – اروپای مرکزی','ok'],['محتوای بازیافتی','۳۰٪ – فولاد بازیافتی اتصالات','ok'],['انتشار ترکیبات فرّار پوشش','در انتظار بررسی','review'],['مصرف آب در تولید','اطلاعات موجود نیست','na']],
+  certs:[['مدیریت پایدار جنگل (نمونه آموزشی)','نهاد گواهی فرضی «الف»','۱۴۰۲/۰۹/۰۱','۱۴۰۵/۰۹/۰۱','ok'],['ایمنی و دوام مبلمان (نمونه آموزشی)','نهاد گواهی فرضی «ب»','۱۴۰۳/۰۸/۱۰','۱۴۰۵/۰۸/۱۰','review'],['پوشش کم‌انتشار (نمونه آموزشی)','نهاد گواهی فرضی «ج»','۱۴۰۱/۰۳/۰۱','۱۴۰۳/۰۳/۰۱','expired']],
+  care:['سطح چوب را با دستمال خشک یا کمی نم‌دار تمیز کنید.','سالی یک‌بار اتصالات را بازبینی و پیچ‌ها را محکم کنید.','از قرار دادن صندلی کنار منبع گرما یا رطوبت زیاد خودداری کنید.','خراش‌های سطحی با روغن چوب قابل ترمیم‌اند.'],
+  eol:[['تعمیر','پایه یا اتصالات آسیب‌دیده قابل ترمیم‌اند.','نوع چوب، ابعاد و کد اتصالات'],['تعویض قطعات','نشیمن، پشتی و پیچ‌ها جداگانه تعویض می‌شوند.','فهرست قطعات یدکی و سازگاری آن‌ها'],['رنگ‌آمیزی و بازسازی','سطح چوب سنباده و دوباره پوشش داده می‌شود.','نوع لاک و پوشش اولیه سطح'],['فروش مجدد','صندلی سالم در بازار دست‌دوم عرضه می‌شود.','تاریخ تولید و وضعیت اصالت'],['بازیافت چوب و فلز','چوب به تخته خرده‌چوب و فولاد به ذوب برمی‌گردد.','ترکیب مواد و روش جداسازی اتصالات']],
+  branches:[['wood','مسیر چوب','#F28C28'],['metal','مسیر فلز','#2F80ED'],['coat','مسیر پوشش','#9B51E0'],['final','محصول نهایی','#27AE60']],
+  companies:[
+   ['for','جنگل مدیریت‌شده پودلاسکی',3,'forest','بیاویستوک','لهستان',23.2,53.1,'الوار بلوط'],
+   ['ore','معدن سنگ‌آهن کیرونا',3,'mine','کیرونا','سوئد',20.25,67.85,'سنگ‌آهن'],
+   ['res','تأمین‌کننده رزین لودویگس‌هافن',3,'plant','لودویگس‌هافن','آلمان',8.44,49.48,'رزین و چسب'],
+   ['cm','تأمین‌کننده مواد پوششی لِورکوزن',3,'plant','لِورکوزن','آلمان',7,51.03,'مواد اولیه پوشش'],
+   ['wp','کارخانه فرآوری چوب اولشتین',2,'factory','اولشتین','لهستان',20.5,53.78,'چوب خشک‌شده'],
+   ['pn','کارخانه صفحات چوبی پوزنان',2,'factory','پوزنان','لهستان',16.9,52.4,'صفحه چندلا'],
+   ['mt','کارخانه فرآوری فلزات زالتس‌گیتر',2,'factory','زالتس‌گیتر','آلمان',10.35,52.15,'ورق فولاد'],
+   ['cf','کارخانه رنگ و پوشش اشتوتگارت',2,'factory','اشتوتگارت','آلمان',9.18,48.78,'لاک و روغن چوب'],
+   ['seat','کارخانه تولید نشیمن و پشتی',1,'factory','وروتسواف','لهستان',17.03,51.1,'نشیمن و پشتی'],
+   ['leg','کارخانه تولید پایه صندلی',1,'factory','شچچین','لهستان',14.55,53.43,'پایه صندلی'],
+   ['fit','کارخانه تولید اتصالات فلزی',1,'factory','دورتموند','آلمان',7.47,51.51,'اتصالات فلزی'],
+   ['ct','تأمین‌کننده پوشش سطح چوب',1,'factory','نورنبرگ','آلمان',11.08,49.45,'پوشش سطح چوب'],
+   ['asm','کارخانه مونتاژ صندلی بلوط',0,'assembly','کاسل','آلمان',9.5,51.3,'صندلی چوبی'],
+   ['wh','انبار محصولات',0,'warehouse','هانوفر','آلمان',9.73,52.37,'صندلی چوبی'],
+   ['dc','مرکز توزیع فرانکفورت',0,'dc','فرانکفورت','آلمان',8.68,50.11,'صندلی چوبی'],
+   ['st','فروشگاه مبلمان مونیخ',0,'store','مونیخ','آلمان',11.58,48.14,'صندلی چوبی']],
+  edges:[
+   ['for','wp','الوار بلوط','wood',[['road',null]]],
+   ['wp','pn','چوب خشک‌شده','wood',[['rail',null]]],
+   ['res','pn','رزین و چسب','wood',[['rail',null,[11.5,50.8]]]],
+   ['wp','leg','چوب خشک‌شده','wood',[['rail',null,[18.5,53.6]]]],
+   ['pn','seat','صفحه چندلا','wood',[['road',null]]],
+   ['ore','mt','سنگ‌آهن','metal',[['rail','بندر نارویک (نروژ)',[17,68.42]],['sea','بندر هامبورگ',[15.5,68.7],[11.5,67],[7,64.5],[3.5,61.5],[3.8,58],[6.5,55.5],[7.6,54.4],[8.75,53.9],[9.9,53.55]],['rail',null]]],
+   ['mt','fit','ورق فولاد','metal',[['rail',null]]],
+   ['cm','cf','مواد اولیه پوشش','coat',[['road',null]]],
+   ['cf','ct','لاک و روغن چوب','coat',[['road',null]]],
+   ['seat','asm','نشیمن و پشتی','wood',[['rail',null,[13.7,51.05]]]],
+   ['leg','asm','پایه صندلی','wood',[['road',null,[13,52.4]]]],
+   ['fit','asm','اتصالات فلزی','metal',[['road',null]]],
+   ['ct','asm','پوشش سطح چوب','coat',[['road',null]]],
+   ['asm','wh','صندلی چوبی','final',[['road',null]]],
+   ['wh','dc','صندلی چوبی','final',[['rail',null]]],
+   ['dc','st','صندلی چوبی','final',[['road',null]]]]
+ }
+};
+
+/* ---------- ابزارهای عمومی ---------- */
+const FA='۰۱۲۳۴۵۶۷۸۹';
+const fa = s => String(s).replace(/\d/g,d=>FA[d]);
+const MONTHS=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+function jparts(day){ // روز ۰ = ۱۴۰۳/۰۱/۰۱
+  let y=1403, d=Math.floor(day);
+  const ylen=y=>y===1403?366:365;
+  while(d<0){y--; d+=ylen(y);} while(d>=ylen(y)){d-=ylen(y); y++;}
+  const ml=[31,31,31,31,31,31,30,30,30,30,30,y===1403?30:29]; let m=0; while(d>=ml[m]){d-=ml[m]; m++;}
+  return [y,m+1,d+1];
+}
+const p2 = n => String(n).padStart(2,'0');
+const jdate = day => { const [y,m,d]=jparts(day); return fa(`${y}/${p2(m)}/${p2(d)}`); };
+const jmonth = day => { const [y,m]=jparts(day); return `${MONTHS[m-1]} ${fa(y)}`; };
+const jtime = t => { const h=Math.floor((t-Math.floor(t))*24); return jdate(t)+' – '+fa(p2(h)+':'+p2(Math.floor(((t*24)%1)*60))); };
+const A_DAY = 6*31+2*30+10; // ۱۴۰۳/۰۹/۱۱ : روز مونتاژ دسته نمونه
+
+const lonX = lon => lon < -30 ? lon+360 : lon;
+function haversine(a,b){ const R=6371,r=Math.PI/180; const dl=(lonX(b[0])-lonX(a[0]))*r, dp=(b[1]-a[1])*r;
+  const h=Math.sin(dp/2)**2+Math.cos(a[1]*r)*Math.cos(b[1]*r)*Math.sin(dl/2)**2; return 2*R*Math.asin(Math.sqrt(h)); }
+
+/* ---------- ساخت مدل از داده‌های فشرده ---------- */
+function buildProduct(P){
+  if(P.built) return P; P.built=true;
+  P.C={}; P.companies=P.companies.map(c=>{ const o={id:c[0],name:c[1],tier:c[2],kind:c[3],city:c[4],country:c[5],ll:[c[6],c[7]],out:c[8],
+      code:c[0].toUpperCase(), col: c[2]>0? 3-c[2] : (['assembly','qc'].includes(c[3])?3:4),
+      meta:{owner:c[0],confidential:c[3]!=='store',exactLocation:'نقش‌های مجاز',summaryForPublic:true}}; P.C[o.id]=o; return o; });
+  P.B={}; P.branches=P.branches.map(b=>{const o={id:b[0],name:b[1],color:b[2]}; P.B[o.id]=o; return o;});
+  P.E={}; P.edges=P.edges.map((e,i)=>{
+    const from=P.C[e[0]], to=P.C[e[1]]; let cur=from.ll;
+    const segs=e[4].map((s,si)=>{ const pts=s.slice(2); const end = s[1]? pts[pts.length-1] : to.ll;
+      const line=[cur,...(s[1]?pts:[...pts,to.ll])]; cur=end;
+      let km=0; for(let k=1;k<line.length;k++) km+=haversine(line[k-1],line[k]);
+      const mode=s[0];
+      const days = mode==='road'?Math.max(1,Math.round(km/600)): mode==='rail'?Math.max(1,Math.round(km/800)):Math.max(2,Math.round(km/750));
+      const secs = mode==='road'?Math.min(12,5+km/150): mode==='rail'?Math.min(14,6+km/250):Math.min(26,8+km/900);
+      return {i:si,mode,hub:s[1],line,km:Math.round(km),days,secs,endName:s[1]||to.name}; });
+    const o={id:'E'+(i+1),n:i+1,from:from.id,to:to.id,mat:e[2],branch:e[3],segs,price:(37+((i*53)%61))*10,
+      secs:segs.reduce((a,s)=>a+s.secs,0),days:segs.reduce((a,s)=>a+s.days,0)};
+    P.E[o.id]=o; return o; });
+  P.out={}; P.inn={}; P.companies.forEach(c=>{P.out[c.id]=[];P.inn[c.id]=[];});
+  P.edges.forEach(e=>{P.out[e.from].push(e);P.inn[e.to].push(e);});
+  /* زمان‌بندی تاریخچه نمونه: مواد به‌صورت عقب‌گرد از روز مونتاژ، محصول نهایی رو به جلو */
+  const opDur=c=>c.tier===3?3:2;
+  const memo={};
+  const opEnd=id=>{ if(id in memo) return memo[id]; const c=P.C[id];
+    if(c.kind==='assembly') return memo[id]=A_DAY;
+    const outs=P.out[id]; let v;
+    if(c.tier===0){ const e=P.inn[id][0]; v=opEnd(e.from)+e.days+1; }       // شاخه نهایی رو به جلو
+    else v=Math.min(...outs.map(e=>opEnd(e.to)-opDur(P.C[e.to])-e.days));
+    return memo[id]=v; };
+  P.companies.forEach(c=>opEnd(c.id));
+  P.opEnd=memo;
+  P.steps={};
+  const opTitle=c=> c.tier===3? `تأمین ${c.out}` : c.tier===2? `فرآوری و تولید ${c.out}` : c.tier===1? `تولید ${c.out}` :
+     c.kind==='assembly'? `مونتاژ ${P.name}` : c.kind==='qc'? 'کنترل کیفیت' : c.kind==='warehouse'? 'ورود به انبار محصول' : c.kind==='dc'? 'ورود به مرکز توزیع' : 'تحویل به فروشگاه';
+  P.branches.forEach(b=>{ const list=[]; const seen={};
+    const es=P.edges.filter(e=>e.branch===b.id);
+    es.forEach(e=>{ const f=P.C[e.from], t=P.C[e.to];
+      if(!seen[f.id]){seen[f.id]=1; list.push({kind:'op',comp:f.id,day:memo[f.id]-(f.tier===0?0:0),title:opTitle(f),country:f.country,city:f.city});}
+      let d = f.tier===0? memo[f.id] : memo[t.id]-opDur(t)-e.days;
+      if(f.tier===0) d=memo[f.id];
+      e.segs.forEach(s=>{ list.push({kind:'move',edge:e.id,seg:s.i,mode:s.mode,day:d+s.days,title:`حمل ${MODE_NAME[s.mode]} به ${s.endName}`,country:t.country,city:s.hub||t.city,fromCity:s.i===0?f.city:e.segs[s.i-1].hub,from:d}); d+=s.days; });
+      if(P.out[t.id].filter(x=>x.branch===b.id).length===0 && !seen[t.id]){ seen[t.id]=1;
+        list.push({kind:'op',comp:t.id,day: t.tier===0&&t.kind!=='assembly'? memo[t.id] : memo[t.id]-opDur(t)+0.5, title: t.kind==='assembly'? `تحویل ${e.mat} به کارخانه مونتاژ` : opTitle(t),country:t.country,city:t.city,deliver:t.kind==='assembly'}); }
+    });
+    list.forEach((s,i)=>s.o=i); list.sort((a,b2)=>a.day-b2.day||a.o-b2.o); list.forEach((s,i)=>{s.n=i+1; s.branch=b.id;});
+    P.steps[b.id]=list; });
+  P.lastDay=Math.max(...Object.values(P.steps).flat().map(s=>s.day));
+  /* چیدمان نمای بازی */
+  const cols=[[],[],[]]; P.companies.forEach(c=>{ if(c.tier>0) cols[3-c.tier].push(c); });
+  const maxN=Math.max(...cols.map(c=>c.length)); const mid=3+(maxN-1)*3;
+  cols.forEach((col,ci)=>col.forEach((c,i)=>{ c.g=[4+ci*7, mid+(i-(col.length-1)/2)*6]; }));
+  let gx=25, gy=mid; P.companies.filter(c=>c.tier===0).forEach((c,i)=>{ if(i>0){ if(c.kind==='qc'||c.kind==='dc') gy+=6; else gx+=6; } c.g=[gx,gy]; });
+  P.gw=gx+5; P.gh=Math.max(2*mid, gy)+5; P.mid=mid;
+  const lanes={};
+  P.edges.forEach(e=>{ const a=P.C[e.from].g, b=P.C[e.to].g; let pts;
+    if(a[0]===b[0]||a[1]===b[1]) pts=[a,b];
+    else { const k=(lanes[a[0]]=(lanes[a[0]]||0)+1); const mx=a[0]+2+(k%4); pts=[a,[mx,a[1]],[mx,b[1]],b]; }
+    e.gpath=pts; });
+  return P;
+}
+
+
+/* core.js — وضعیت برنامه، کنترل دسترسی و موتور شبیه‌سازی
+   توجه: فیلتر سمت مرورگر فقط برای نمونه آموزشی است؛ در نسخه واقعی باید با احراز هویت و API فیلترشده سمت سرور جایگزین شود. */
+const S = { P:null, ctx:{role:null,comp:null}, view:'game', branch:null, step:null, selEdge:null, panel:null, open:{info:true}, shipFilter:null, eol:0 };
+
+const ROLES = [
+ {id:'consumer', title:'مصرف‌کننده', icon:'user', desc:'اطلاعات عمومی محصول، منشأ مواد، ویژگی‌های زیست‌محیطی و راهنمای تعمیر و بازیافت را مشاهده کن.'},
+ {id:'manufacturer', title:'تولیدکننده نهایی', icon:'factory', desc:'شبکه تأمین، محموله‌ها، مسیرهای لجستیکی و اطلاعات تأمین‌کنندگانی را که مجوز دسترسی به آن‌ها داری، بررسی کن.'},
+ {id:'t1', tier:1, title:'تأمین‌کننده سطح ۱', icon:'gear', desc:'ورودی‌های کارخانه خودت و ارتباط مستقیم با کارخانه تولید محصول نهایی را بررسی کن.'},
+ {id:'t2', tier:2, title:'تأمین‌کننده سطح ۲', icon:'flask', desc:'منابع تأمین مستقیم، اطلاعات کارخانه خودت و محموله‌های ارسالی به تأمین‌کنندگان سطح بعدی را مشاهده کن.'},
+ {id:'t3', tier:3, title:'تأمین‌کننده مواد اولیه', icon:'leaf', desc:'اطلاعات مواد اولیه تأمین‌شده، محموله‌های خروجی و مشتریان مستقیم خود را بررسی کن.'}
+];
+const roleOf = id => ROLES.find(r=>r.id===id);
+const isConsumer = () => S.ctx.role==='consumer';
+
+/* محدوده مجاز: مجموعه شرکت‌ها و ارتباط‌هایی که نقش فعلی حق دیدنشان را دارد (فیلتر سطح رکورد) */
+let _scope=null;
+function scope(){
+  if(_scope) return _scope; const P=S.P, r=S.ctx.role;
+  const sc={generic:false,comps:new Set(),edges:new Set(),self:null};
+  if(r==='consumer') sc.generic=true;
+  else if(r==='manufacturer'){ P.companies.forEach(c=>sc.comps.add(c.id)); P.edges.forEach(e=>sc.edges.add(e.id)); sc.self=P.companies.find(c=>c.kind==='assembly').id; }
+  else { const id=S.ctx.comp; sc.self=id; sc.comps.add(id);
+    [...P.out[id],...P.inn[id]].forEach(e=>{sc.edges.add(e.id); sc.comps.add(e.from); sc.comps.add(e.to);}); }
+  return _scope=sc;
+}
+const canComp = id => scope().comps.has(id);
+const canEdge = id => scope().edges.has(id);
+/* فیلتر سطح فیلد — سیاست نمونه بازی */
+const POLICY = [
+ ['نام محصول','بله','بله','در صورت ارتباط'],['کشور تولید','بله','بله','در صورت مجوز'],['ترکیبات عمومی','بله','بله','مرتبط با فعالیت'],
+ ['شناسه داخلی محموله','خیر','در صورت مجوز','محموله‌های مرتبط'],['نام دقیق تأمین‌کنندگان','فقط موارد عمومی','در صورت مجوز','شرکای مجاز'],
+ ['مسیر دقیق لجستیکی','فقط موارد عمومی','در صورت مجوز','مسیرهای مرتبط'],['اطلاعات پایداری عمومی','بله','بله','مرتبط با فعالیت'],
+ ['قیمت خرید مواد','خیر','در صورت مجوز','صرفاً داده‌های خود'],['شبکه کامل تأمین','خیر','فقط بخش‌های مجاز','خیر'],['راهنمای تعمیر و بازیافت','بله','بله','در صورت نیاز']];
+function canField(f, edge){
+  const r=S.ctx.role; if(r==='consumer') return false;
+  if(edge && !canEdge(edge.id)) return false;
+  if(f==='price'){ if(!edge) return false; return r==='manufacturer' ? S.P.C[edge.to].kind==='assembly' : true; }
+  return true; // shipmentId, batchId, supplierName, exactRoute, schedule
+}
+const eventVisible = ev => isConsumer()? ev.pub : canEdge(ev.edge);
+
+/* ---------------- موتور شبیه‌سازی ---------------- */
+const SIM = { t:0, t0:0, running:false, started:false, dpp:true, events:[], ships:{}, batches:{}, inbox:{}, gaps:[], gapOpen:null, seq:0, evn:0, last:0 };
+const HOOK = { event(){}, missed(){}, arrive(){}, depart(){} };
+const SPEED = 3/24; // هر ثانیه واقعی = ۳ ساعت شبیه‌سازی
+
+function simReset(){
+  const P=S.P; Object.assign(SIM,{t:P.lastDay+2+8/24,running:false,started:false,dpp:true,events:[],ships:{},batches:{},inbox:{},gaps:[],gapOpen:null,seq:0,evn:0});
+  SIM.t0=SIM.t; SIM.last=SIM.t; P.companies.forEach(c=>SIM.inbox[c.id]={});
+  /* رکوردهای تاریخی نمونه: برای هر ارتباط یک دسته تحویل‌شده و یک محموله در راه */
+  P.edges.forEach((e,i)=>{
+    const prev=newShip(e,true); prev.state='done'; SIM.inbox[e.to][e.id]=prev.batch; record('تحویل محموله',prev,e,P.C[e.to].city,e.to,null,true);
+    const s=newShip(e,true); const h=((i*37)%100)/100; let f=h*0.85, acc=0;
+    for(const sg of e.segs){ const w=sg.secs/e.secs; if(f<=acc+w){ s.seg=sg.i; s.u=(f-acc)/w; break;} acc+=w; }
+    SIM.ships[e.id]=s; });
+}
+function newShip(e,silent){
+  const P=S.P, from=P.C[e.from]; SIM.seq++;
+  const inputs = from.tier===3 ? [] : Object.values(SIM.inbox[from.id]);
+  const b={id:`BAT-${from.code}-${String(SIM.seq).padStart(3,'0')}`,comp:from.id,mat:e.mat,inputs: from.tier===3? [] : (SIM.dpp? inputs.slice(): null),t:SIM.t,verified:SIM.dpp};
+  SIM.batches[b.id]=b;
+  const s={id:`SHP-${P.code.slice(4)}-${String(e.n).padStart(2,'0')}-${String(SIM.seq).padStart(3,'0')}`,edge:e.id,batch:b.id,seg:0,u:0,state:'move',wait:0,sent:SIM.t,gap:0,evs:0};
+  const t0 = from.tier===3?'تأمین مواد اولیه': from.kind==='assembly'?'مونتاژ محصول': from.tier===0?'توزیع':'ثبت تبدیل مواد به قطعه';
+  record(t0,s,e,from.city,from.id,null,silent); record('ارسال محموله',s,e,from.city,from.id,e.segs[0].mode,silent);
+  if(!silent) HOOK.depart(s,e);
+  return s;
+}
+/* هر رویداد رهگیری؛ اگر تبادل اطلاعات قطع باشد رویداد ثبت نمی‌شود و فقط به‌عنوان شکاف شمرده می‌شود */
+function record(type,ship,e,place,comp,mode,silent){
+  if(!SIM.dpp){ ship.gap++; const g=SIM.gapOpen; g.n++; g.by[e.id]=(g.by[e.id]||0)+1; if(!silent) HOOK.missed(comp,e); return null; }
+  const b=SIM.batches[ship.batch];
+  const ev={id:'EV-'+String(++SIM.evn).padStart(4,'0'),ship:ship.id,batch:ship.batch,inputs:b.inputs,comp,type,place,t:SIM.t,mode,
+    status:'ثبت‌شده – تأیید آزمایشی',conf: type==='تحویل به فروشگاه'?'عمومی':'محرمانه تجاری',edge:e.id,pub:type==='تحویل به فروشگاه',
+    readers: type==='تحویل به فروشگاه'? 'همه نقش‌ها' : 'مالک داده، طرف مستقیم معامله و تولیدکننده نهایی (طبق مجوز)'};
+  SIM.events.push(ev); ship.evs++; SIM.last=SIM.t; if(SIM.events.length>600) SIM.events.splice(0,100);
+  if(!silent) HOOK.event(ev,e); return ev;
+}
+function simTick(dt){
+  if(!SIM.running) return; const P=S.P; SIM.t+=dt*SPEED; SIM.clock=(SIM.clock||0)+dt;
+  for(const e of P.edges){ let s=SIM.ships[e.id];
+    if(s.state==='dwell'){ s.wait-=dt; if(s.wait<=0) SIM.ships[e.id]=newShip(e,false); continue; }
+    const sg=e.segs[s.seg]; s.u+=dt/sg.secs;
+    if(s.u>=1){
+      if(s.seg<e.segs.length-1){ const nx=e.segs[s.seg+1];
+        const type = nx.mode==='sea'?'بارگیری روی کشتی': sg.mode==='sea'?'تخلیه کشتی': nx.mode==='rail'?'انتقال ریلی':'ورود به پایانه و ادامه جاده‌ای';
+        if(nx.mode==='sea') record('ورود به بندر',s,e,sg.hub,e.from,sg.mode);
+        record(type,s,e,sg.hub,e.from,nx.mode); s.seg++; s.u=0;
+      } else { const to=P.C[e.to]; s.u=1; s.state='dwell'; s.wait=2.6;
+        const type = to.kind==='warehouse'?'ورود به انبار': to.kind==='dc'?'توزیع': to.kind==='store'?'تحویل به فروشگاه':'تحویل محموله';
+        record(type,s,e,to.city,to.id,null); SIM.inbox[e.to][e.id]=s.batch; HOOK.arrive(s,e); }
+    } }
+}
+function shipFrac(e,s){ let acc=0; for(let i=0;i<s.seg;i++) acc+=e.segs[i].secs; return Math.min(1,(acc+s.u*e.segs[s.seg].secs)/e.secs); }
+function shipStatus(e,s){ return s.state==='dwell' ? 'تحویل‌شده در مقصد' : `در حال حمل ${MODE_NAME[e.segs[s.seg].mode]}`; }
+function shipData(s){ const b=SIM.batches[s.batch];
+  if(s.gap>0 && s.evs===0) return ['ثبت نشده','bad'];
+  if(s.gap>0 || b.inputs===null) return ['ناقص – بخشی از رویدادها ثبت نشده','warn'];
+  return ['ثبت‌شده – تأیید آزمایشی','ok']; }
+function setDpp(on){
+  if(on===SIM.dpp) return; SIM.dpp=on;
+  if(!on) SIM.gapOpen={from:SIM.t,to:null,by:{},n:0};
+  else { SIM.gapOpen.to=SIM.t; SIM.gaps.push(SIM.gapOpen); SIM.gapOpen=null; }
+}
+/* تعداد رویدادهای ثبت‌نشده در محدوده مجاز نقش فعلی */
+function gapCount(g){ if(isConsumer()) return null; let n=0; for(const id in g.by) if(canEdge(id)) n+=g.by[id]; return n; }
+/* رویدادهای ثبت‌نشده مرتبط با یک شرکت، فقط از ارتباط‌های مجاز */
+function nodeGap(g,comp){ let n=0; for(const id in g.by){ const e=S.P.E[id]; if(canEdge(id)&&(e.from===comp||e.to===comp)) n+=g.by[id]; } return n; }
+
+/* views.js — نقشه جغرافیایی و نمای بازی ایزومتریک (هر دو از یک مجموعه داده) */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+
+/* ---------- جابه‌جایی و بزرگ‌نمایی ---------- */
+class PanZoom{
+  constructor(svg,g,o){ Object.assign(this,{svg,g,k:1,x:0,y:0,min:o.min,max:o.max,on:o.on,ptrs:new Map(),moved:false,acc:0});
+    svg.addEventListener('pointerdown',e=>{ this.ptrs.set(e.pointerId,[e.clientX,e.clientY]); if(this.ptrs.size===1){this.moved=false;this.acc=0;} this.anim=null; });
+    window.addEventListener('pointermove',e=>this._move(e));
+    const up=e=>this.ptrs.delete(e.pointerId); window.addEventListener('pointerup',up); window.addEventListener('pointercancel',up);
+    svg.addEventListener('wheel',e=>{ e.preventDefault(); const r=svg.getBoundingClientRect(); this.zoomAt(e.clientX-r.left,e.clientY-r.top,Math.exp(-e.deltaY*0.0016)); this.apply(); },{passive:false});
+  }
+  _move(e){ if(!this.ptrs.has(e.pointerId)) return; const prev=this.ptrs.get(e.pointerId), cur=[e.clientX,e.clientY];
+    if(this.ptrs.size===1){ this.x+=cur[0]-prev[0]; this.y+=cur[1]-prev[1]; this.acc+=Math.abs(cur[0]-prev[0])+Math.abs(cur[1]-prev[1]); if(this.acc>7) this.moved=true; }
+    else { const o=[...this.ptrs.entries()].find(([id])=>id!==e.pointerId)[1]; const d0=Math.hypot(prev[0]-o[0],prev[1]-o[1])||1, d1=Math.hypot(cur[0]-o[0],cur[1]-o[1])||1;
+      const r=this.svg.getBoundingClientRect(); this.zoomAt((cur[0]+o[0])/2-r.left,(cur[1]+o[1])/2-r.top,d1/d0); this.moved=true; }
+    this.ptrs.set(e.pointerId,cur); this.apply(); }
+  zoomAt(cx,cy,f){ const k2=clamp(this.k*f,this.min,this.max); f=k2/this.k; this.x=cx-(cx-this.x)*f; this.y=cy-(cy-this.y)*f; this.k=k2; }
+  zoomBy(f){ const r=this.svg.getBoundingClientRect(); const k2=clamp(this.k*f,this.min,this.max), g=k2/this.k; this.to(k2,r.width/2-(r.width/2-this.x)*g,r.height/2-(r.height/2-this.y)*g); }
+  apply(){ this.g.setAttribute('transform',`translate(${this.x.toFixed(2)} ${this.y.toFixed(2)}) scale(${this.k.toFixed(4)})`); this.on&&this.on(this.k); }
+  fit(b,pad,maxK,instant){ const r=this.svg.getBoundingClientRect(); if(!r.width) return; pad=pad||50;
+    const w=Math.max(b[2]-b[0],1), h=Math.max(b[3]-b[1],1); const il=this.inset||0, k=clamp(Math.min((r.width-il-2*pad)/w,(r.height-2*pad)/h),this.min,maxK||this.max);
+    const x=il+(r.width-il)/2-k*(b[0]+b[2])/2, y=r.height/2-k*(b[1]+b[3])/2; instant? (this.anim=null,Object.assign(this,{k,x,y}),this.apply()) : this.to(k,x,y); }
+  to(k,x,y){ const s={k:this.k,x:this.x,y:this.y}, t0=performance.now(), me=this.anim={};
+    const stepF=now=>{ if(this.anim!==me) return; let u=Math.min(1,(now-t0)/450); u=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
+      this.k=s.k+(k-s.k)*u; this.x=s.x+(x-s.x)*u; this.y=s.y+(y-s.y)*u; this.apply(); if(u<1) requestAnimationFrame(stepF); };
+    requestAnimationFrame(stepF); }
+}
+
+/* ---------- ابزار خطوط ---------- */
+function mkLine(pts){ const cum=[0]; for(let i=1;i<pts.length;i++) cum.push(cum[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1])); return {pts,cum,len:cum[cum.length-1]||1}; }
+function lineAt(L,t){ const d=clamp(t,0,1)*L.len; let i=1; while(i<L.cum.length-1&&L.cum[i]<d) i++; const a=L.pts[i-1],b=L.pts[i],sp=(L.cum[i]-L.cum[i-1])||1,f=(d-L.cum[i-1])/sp; return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,b[0]-a[0]]; }
+function lineSub(L,t0,t1){ const out=[lineAt(L,t0)]; for(let i=1;i<L.pts.length-1;i++){ const f=L.cum[i]/L.len; if(f>t0+1e-6&&f<t1-1e-6) out.push(L.pts[i]); } out.push(lineAt(L,t1)); return out; }
+const ptsStr = a => a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+const bbox = pts => { let b=[1e9,1e9,-1e9,-1e9]; pts.forEach(p=>{b[0]=Math.min(b[0],p[0]);b[1]=Math.min(b[1],p[1]);b[2]=Math.max(b[2],p[0]);b[3]=Math.max(b[3],p[1]);}); return b; };
+
+/* ---------- تصویر وسایل حمل‌ونقل ---------- */
+function sprite(mode,c){
+  const o='stroke="#3b2f2f" stroke-width="1.4" stroke-linejoin="round"';
+  if(mode==='road') return `<rect x="-17" y="-13" width="21" height="16" rx="2.5" fill="${c}" ${o}/><path d="M4-8h8l6 6v5H4z" fill="#fff7e8" ${o}/><path d="M8-5h3.5l3 3H8z" fill="#8fd3f4"/><circle cx="-9" cy="5" r="4.2" fill="#3b2f2f"/><circle cx="-9" cy="5" r="1.6" fill="#ddd"/><circle cx="11" cy="5" r="4.2" fill="#3b2f2f"/><circle cx="11" cy="5" r="1.6" fill="#ddd"/>`;
+  if(mode==='rail') return `<rect x="-21" y="-11" width="19" height="13" rx="2" fill="${c}" ${o}/><rect x="0" y="-13" width="21" height="15" rx="3" fill="#e9573f" ${o}/><rect x="11" y="-10" width="7" height="5" rx="1" fill="#8fd3f4"/><rect x="3" y="-17" width="4" height="5" fill="#3b2f2f"/><path d="M-2-3h2" stroke="#3b2f2f" stroke-width="2"/><g fill="#3b2f2f"><circle cx="-16" cy="4" r="3"/><circle cx="-7" cy="4" r="3"/><circle cx="5" cy="4" r="3"/><circle cx="16" cy="4" r="3"/></g>`;
+  return `<path d="M-23-1h46l-7 10h-32z" fill="#34495e" ${o}/><rect x="-15" y="-9" width="8" height="8" fill="${c}" ${o}/><rect x="-6" y="-9" width="8" height="8" fill="#f6c453" ${o}/><rect x="-15" y="-16" width="8" height="7" fill="#f6c453" ${o}/><rect x="6" y="-15" width="8" height="14" rx="1" fill="#fff7e8" ${o}/><rect x="8" y="-20" width="4" height="5" fill="#e9573f"/><path d="M-26 9q4-3 8 0t8 0 8 0 8 0 8 0 8 0" fill="none" stroke="#fff" stroke-width="1.6" opacity=".8"/>`;
+}
+const vehHTML = (id,act) => `<g class="veh" data-act="${act}" data-id="${id}"><circle r="22" fill="transparent"/><g class="vs"></g><g class="vb"><circle cx="13" cy="-17" r="7.5" fill="#f39c12" stroke="#fff" stroke-width="1.5"/><text x="13" y="-13.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">!</text></g></g>`;
+
+/* ============ نقشه جغرافیایی ============ */
+const GS=4, merc=lat=>Math.log(Math.tan(Math.PI/4+lat*Math.PI/360))*180/Math.PI, MTOP=merc(80), GW=360*GS, GH=(MTOP-merc(-58))*GS;
+const gxy = ll => [(lonX(ll[0])+30)*GS,(MTOP-merc(ll[1]))*GS];
+let geoPZ, gamePZ, geoCS=[];
+function initGeoBase(){
+  const poly=(arr,cls)=>arr.map(([s,p])=>{ let d=''; for(let i=0;i<p.length;i+=2){ const x=(p[i]+(s?360:0)+30)*GS, y=(MTOP-merc(clamp(p[i+1],-70,84)))*GS; d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); } return `<path class="${cls}" d="${d}Z"/>`; }).join('');
+  const dec=DECOR.map(([t,lo,la])=>{ const [x,y]=gxy([lo,la]); const g= t==='m'? `<path d="M-8 5L0-8L8 5Z" fill="#b9a58c"/><path d="M-3-3L0-8L3-3Z" fill="#fff"/>`
+      : t==='f'? `<circle r="4" fill="#5fae5a"/><circle cx="5" cy="2" r="3.3" fill="#74c06b"/><circle cx="-4.5" cy="2.4" r="3" fill="#4f9c4e"/>`
+      : t==='a'? `<rect x="-5.5" y="-4" width="11" height="8" rx="1.5" fill="#f0dc82"/><path d="M-5.5-1.3h11M-5.5 1.4h11" stroke="#d8bf55" stroke-width=".8"/>`
+      : `<path d="M-5 4L0-5L5 4Z" fill="#8a8f98"/><rect x="-1.5" y=".6" width="3" height="3.4" fill="#3b3f46"/>`;
+    return `<g class="cs dec" data-x="${x}" data-y="${y}">${g}</g>`; }).join('');
+  let grid=''; for(let lo=-30;lo<=330;lo+=30) grid+=`<path d="M${(lo+30)*GS} 0V${GH}"/>`; for(let la=-40;la<=60;la+=20) grid+=`<path d="M0 ${(MTOP-merc(la))*GS}H${GW}"/>`;
+  $('#geo').innerHTML=`<g id="geo-root"><rect x="-400" y="-300" width="${GW+800}" height="${GH+600}" fill="#bfe4f5"/><g class="ggrid">${grid}</g>${poly(LAND,'land')}${poly(WATER,'lake')}<g opacity=".9">${dec}</g>
+    <g id="geo-names">${SEA_LABELS.map(([n,lo,la])=>{const[x,y]=gxy([lo,la]);return `<g class="cs sealbl" data-x="${x}" data-y="${y}"><text text-anchor="middle">${n}</text></g>`;}).join('')}${COUNTRY_LABELS.map(([n,lo,la])=>{const[x,y]=gxy([lo,la]);return `<g class="cs ctry" data-x="${x}" data-y="${y}"><text text-anchor="middle">${n}</text></g>`;}).join('')}</g>
+    <g id="geo-dyn"></g></g>`;
+  geoPZ=new PanZoom($('#geo'),$('#geo-root'),{min:.25,max:60,on:k=>{ const inv=1/k; for(const c of geoCS) c.el.setAttribute('transform',`translate(${c.x} ${c.y}) scale(${inv})`);
+    const g=$('#geo'); g.classList.toggle('z2',k>1.7); g.classList.toggle('z3',k>4.5);  if(!_lab){ _lab=true; requestAnimationFrame(layoutLabels); } }});
+}
+let _lab=false;
+/* برچسب شرکت‌ها فقط وقتی نمایش داده می‌شود که روی برچسب دیگری نیفتد */
+function layoutLabels(){ _lab=false; if(!S.P) return; const k=geoPZ.k, kept=[]; const r=$('#geo').getBoundingClientRect();
+  const it=[]; for(const c of geoCS){ const cl=c.el.classList;
+    if(cl.contains('comp')){ const cc=S.P.C[c.el.dataset.id]; it.push({c,l:c.el.querySelector('.cl'),dy:24,minK:1.3,pr:(cl.contains('self')?0:cl.contains('sel')?1:2+cc.tier),w:(cc.name.length*6.3+44)/2}); }
+    else if(cl.contains('hub')){ const l=c.el.querySelector('.hl'); it.push({c,l,dy:-17,minK:3,pr:9,w:(l.textContent.length*6.3+24)/2}); } }
+  it.sort((a,b)=>a.pr-b.pr);
+  for(const o of it){ const sx=o.c.x*k+geoPZ.x, sy=o.c.y*k+geoPZ.y+o.dy; const box=[sx-o.w,sy-12,sx+o.w,sy+12];
+    const ok = o.pr<2 || (k>o.minK && sx>0&&sx<r.width && !kept.some(b=>box[0]<b[2]&&box[2]>b[0]&&box[1]<b[3]&&box[3]>b[1]));
+    if(ok) kept.push(box); if(o.l) o.l.style.display=ok?'block':'none'; } }
+function regCS(){ geoCS=$$('#geo .cs').map(el=>({el,x:+el.dataset.x,y:+el.dataset.y})); }
+const pill = (txt,dot,self) => { const w=Math.max(40,txt.length*6.3+(dot?26:16)); return `<rect x="${-w/2}" y="-10" width="${w}" height="20" rx="10" class="pillbg${self?' self':''}"/>${dot?`<circle cx="${w/2-10}" cy="0" r="4" fill="${dot}"/>`:''}<text x="${dot?-5:0}" y="4" text-anchor="middle" class="pilltx">${txt}</text>`; };
+const warnBadge = id => `<g class="warn" data-act="warn" data-id="${id}"><circle r="11" fill="#f39c12" stroke="#fff" stroke-width="2"/><text y="5" text-anchor="middle" font-size="15" font-weight="900" fill="#fff">!</text></g>`;
+
+function prepProduct(P){ if(P.prep) return; P.prep=true;
+  P.edges.forEach(e=>{ e.geo=e.segs.map(s=>mkLine(s.line.map(gxy))); e.gl=mkLine(e.gpath.map(p=>iso(p[0],p[1])));
+    let acc=0; e.fr=e.segs.map(s=>{ const a=acc/e.secs; acc+=s.secs; return [a,acc/e.secs]; }); });
+  const k0=P.companies.find(c=>c.tier===3).kind;
+  const names=['منابع مواد اولیه','فرآوری مواد','تولید قطعات','مونتاژ نهایی','فروشگاه'], kinds=[k0,'factory','factory','assembly','store'], tiers=[3,2,1,0,0];
+  P.GN=names.map((n,i)=>({id:'g'+i,name:n,kind:kinds[i],tier:tiers[i],g:[4+i*7,P.mid],generic:true}));
+  P.GE=[0,1,2,3].map(i=>({id:'ge'+i,from:'g'+i,to:'g'+(i+1),gl:mkLine([iso(4+i*7,P.mid),iso(11+i*7,P.mid)]),fr:[[0,1]],segs:[{mode:'road'}],color:'#f6c453'}));
+}
+function drawGeo(){
+  const P=S.P, sc=scope(); let h='';
+  if(sc.generic){
+    const regs={}; P.companies.filter(c=>c.tier===3).forEach(c=>{ const r=REGION[c.country]; (regs[r[0]]=regs[r[0]]||{name:r[0],ll:[r[1],r[2]],mats:[]}).mats.push(c.out); });
+    P.regions=regs;
+    for(const r of Object.values(regs)){ const [x,y]=gxy(r.ll); h+=`<g class="cs region" data-act="region" data-id="${r.name}" data-x="${x}" data-y="${y}"><circle r="34" class="rg"/><circle r="6" fill="#2E9E5B" stroke="#fff" stroke-width="2"/><g transform="translate(0 -22)">${pill('منطقه تأمین: '+r.name)}</g></g>`; }
+    const ml=COUNTRY_LABELS.find(c=>c[0]===P.madeIn), [mx,my]=gxy([ml[1],ml[2]]), [sx,sy]=gxy([P.market[1],P.market[2]]);
+    h+=`<g class="cs" data-act="pub" data-id="made" data-x="${mx}" data-y="${my}"><circle r="9" fill="#8E5BD9" stroke="#fff" stroke-width="2.5"/><g transform="translate(0 22)">${pill('کشور تولید: '+P.madeIn)}</g></g>`;
+    h+=`<g class="cs" data-act="pub" data-id="market" data-x="${sx}" data-y="${sy}"><circle r="9" fill="#27AE60" stroke="#fff" stroke-width="2.5"/><g transform="translate(0 22)">${pill('محل عرضه: '+P.market[0])}</g><g transform="translate(16 -14)">${warnBadge('pub')}</g></g>`;
+  } else {
+    const es=P.edges.filter(e=>sc.edges.has(e.id)); let routes='',info='',hubs='',vehs='';
+    es.forEach(e=>{ const c=P.B[e.branch].color;
+      routes+=`<g class="edge" data-e="${e.id}" style="--c:${c}">`+e.segs.map((s,i)=>{ const d='M'+e.geo[i].pts.map(p=>p[0].toFixed(2)+' '+p[1].toFixed(2)).join('L');
+        return `<g class="seg" data-act="route" data-id="${e.id}" data-s="${i}"><path class="hit" d="${d}"/><path class="rt ${s.mode}" d="${d}"/>${s.mode==='rail'?`<path class="ties" d="${d}"/>`:''}</g>`; }).join('')+'</g>';
+      const a=gxy(P.C[e.from].ll), b=gxy(P.C[e.to].ll), dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy)||1, off=Math.min(40,L*.22);
+      info+=`<path class="info" data-e="${e.id}" d="M${a[0]} ${a[1]}Q${(a[0]+b[0])/2+dy/L*off} ${(a[1]+b[1])/2-Math.abs(dx)/L*off-off*.3} ${b[0]} ${b[1]}"/>`;
+      e.segs.forEach((s,i)=>{ if(!s.hub) return; const p=e.geo[i].pts[e.geo[i].pts.length-1]; const port=s.mode==='sea'||e.segs[i+1].mode==='sea';
+        hubs+=`<g class="cs hub" data-x="${p[0]}" data-y="${p[1]}"><title>${s.hub}</title><rect x="-6" y="-6" width="12" height="12" rx="3" fill="${port?'#1f6fb2':'#7a5230'}" stroke="#fff" stroke-width="1.5"/><text y="3.5" text-anchor="middle" font-size="9" fill="#fff">${port?'⚓':'▤'}</text><g class="hl" transform="translate(0 -17)">${pill(s.hub)}</g></g>`; });
+      vehs+=`<g class="cs" data-v="${e.id}" data-x="0" data-y="0">${vehHTML(e.id,'veh')}</g>`; });
+    const comps=P.companies.filter(c=>sc.comps.has(c.id)).map(c=>{ const [x,y]=gxy(c.ll), self=c.id===sc.self;
+      return `<g class="cs comp${self?' self':''}" data-act="comp" data-id="${c.id}" data-x="${x}" data-y="${y}">${self?'<circle r="16" class="selfring"/>':''}<circle r="10" fill="${TIER_COLOR[c.tier]}" stroke="#fff" stroke-width="2.5"/><text y="4" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">${fa(c.tier)}</text><g class="cl" transform="translate(0 24)">${pill(c.name+(self?' (شما)':''),null,self)}</g><g transform="translate(13 -13)">${warnBadge(c.id)}</g></g>`; }).join('');
+    h=`<g id="geo-routes">${routes}</g><g id="geo-info">${info}</g>${hubs}${comps}<g id="geo-veh">${vehs}</g>`;
+  }
+  $('#geo-dyn').innerHTML=h+'<g id="geo-ping"></g>'; regCS(); geoPZ.apply(); fitGeo(true);
+}
+function fitGeo(instant){ const P=S.P, sc=scope(); let pts=[];
+  if(sc.generic){ Object.values(P.regions).forEach(r=>pts.push(gxy(r.ll))); pts.push(gxy([P.market[1],P.market[2]])); const ml=COUNTRY_LABELS.find(c=>c[0]===P.madeIn); pts.push(gxy([ml[1],ml[2]])); }
+  else P.edges.filter(e=>sc.edges.has(e.id)).forEach(e=>e.geo.forEach(L=>pts.push(...L.pts)));
+  geoPZ.fit(bbox(pts),window.innerWidth<760?64:90,sc.generic?5:10,instant); }
+
+/* ============ نمای بازی ایزومتریک ============ */
+const TW=56, TH=28, iso=(x,y)=>[(x-y)*TW/2,(x+y)*TH/2];
+function box(x,y,w,d,h,ct,cl,cr,z){ z=z||0; const P=(a,b)=>{const p=iso(a,b);return [p[0],p[1]-z];};
+  const A=P(x-w/2,y-d/2),B=P(x+w/2,y-d/2),C=P(x+w/2,y+d/2),D=P(x-w/2,y+d/2), u=p=>p[0].toFixed(1)+','+(p[1]-h).toFixed(1), g=p=>p[0].toFixed(1)+','+p[1].toFixed(1);
+  return `<polygon points="${g(D)} ${g(C)} ${u(C)} ${u(D)}" fill="${cl}"/><polygon points="${g(C)} ${g(B)} ${u(B)} ${u(C)}" fill="${cr}"/><polygon points="${u(A)} ${u(B)} ${u(C)} ${u(D)}" fill="${ct}"/>`; }
+const diamond=(x,y,w,d,fill,extra)=>`<polygon points="${ptsStr([iso(x-w/2,y-d/2),iso(x+w/2,y-d/2),iso(x+w/2,y+d/2),iso(x-w/2,y+d/2)])}" fill="${fill}" ${extra||''}/>`;
+function tree(x,y,v){ const [px,py]=iso(x,y);
+  return v>.5? `<g><ellipse cx="${px}" cy="${py+2}" rx="9" ry="4" fill="rgba(0,0,0,.13)"/><rect x="${px-2}" y="${py-10}" width="4" height="11" fill="#8b5a2b"/><circle cx="${px}" cy="${py-19}" r="11" fill="#3f9d4a"/><circle cx="${px-4}" cy="${py-23}" r="5" fill="#59b560"/></g>`
+    : `<g><ellipse cx="${px}" cy="${py+2}" rx="8" ry="3.5" fill="rgba(0,0,0,.13)"/><rect x="${px-1.5}" y="${py-7}" width="3" height="8" fill="#8b5a2b"/><path d="M${px-10} ${py-6}L${px} ${py-30}L${px+10} ${py-6}Z" fill="#2f8f4e"/><path d="M${px-7} ${py-17}L${px} ${py-36}L${px+7} ${py-17}Z" fill="#46a862"/></g>`; }
+function building(c){ const [x,y]=c.g, tc=TIER_COLOR[c.tier], W1='#fbefd5', W2='#e6d3ac', [px,py]=iso(x,y); let h=`<ellipse cx="${px}" cy="${py+6}" rx="52" ry="24" fill="rgba(0,0,0,.10)"/>`;
+  const smoke=(sx,sy)=>`<circle cx="${sx}" cy="${sy}" r="5" fill="#fff" opacity=".8"/><circle cx="${sx+5}" cy="${sy-8}" r="4" fill="#fff" opacity=".6"/>`;
+  switch(c.kind){
+    case 'farm': h+=diamond(x,y,3,3,'#f0dc82')+[-1,-.4,.2,.8].map(o=>{const a=iso(x-1.4,y+o),b=iso(x+1.4,y+o);return `<path d="M${a[0]} ${a[1]}L${b[0]} ${b[1]}" stroke="#cfae3f" stroke-width="2"/>`;}).join('')+box(x-.6,y-.8,1.1,1.1,18,'#c0392b','#f7e2c2','#e2c79b')+[[.6,.5],[1,-.6],[-.2,1]].map(([a,b])=>{const p=iso(x+a,y+b);return `<circle cx="${p[0]}" cy="${p[1]-5}" r="4" fill="#fff"/><circle cx="${p[0]+3}" cy="${p[1]-8}" r="3" fill="#fff"/>`;}).join(''); break;
+    case 'forest': h+=[[-1,-1,.9],[.2,-1.1,.2],[1.1,-.5,.8],[-1.1,.2,.3],[-.1,-.1,.7],[.4,1,.2]].map(([a,b,v])=>tree(x+a,y+b,v)).join('')+box(x+.9,y+.9,1.2,.4,6,'#b9824c','#8b5a2b','#a06a36'); break;
+    case 'mine': { const A=iso(x-1.5,y+1.5),B=iso(x+1.5,y+1.5),C=iso(x+1.5,y-1.5),T=[px,py-58]; h+=`<polygon points="${ptsStr([A,B,T])}" fill="#9aa0a8"/><polygon points="${ptsStr([B,C,T])}" fill="#7d838c"/><polygon points="${px-9},${py-40} ${px},${py-58} ${px+8},${py-42} ${px+2},${py-46} ${px-3},${py-41}" fill="#fff"/><ellipse cx="${px-13}" cy="${py+8}" rx="9" ry="11" fill="#3b3f46"/>`+box(x+.9,y+1.3,.7,.5,7,'#f6c453','#c8922b','#dba63a'); break; }
+    case 'plant': h+=[[-.6,-.3],[.6,.4]].map(([a,b])=>{const p=iso(x+a,y+b);return `<rect x="${p[0]-13}" y="${p[1]-30}" width="26" height="30" fill="#cfd8dc"/><ellipse cx="${p[0]}" cy="${p[1]}" rx="13" ry="6" fill="#b0bec5"/><ellipse cx="${p[0]}" cy="${p[1]-30}" rx="13" ry="6" fill="${tc}"/><rect x="${p[0]-13}" y="${p[1]-18}" width="26" height="4" fill="#90a4ae"/>`;}).join(''); break;
+    case 'warehouse': h+=box(x,y,3,2.2,20,'#7fa7c9',W1,W2)+box(x,y,3,.5,4,'#5d87ab','#5d87ab','#5d87ab',20); break;
+    case 'dc': h+=box(x,y,2.6,2.6,24,'#f39c4a',W1,W2)+box(x-.3,y+1.35,.6,.2,10,'#6b4226','#6b4226','#6b4226')+box(x+.6,y+1.35,.6,.2,10,'#6b4226','#6b4226','#6b4226'); break;
+    case 'store': { h+=box(x,y,2.2,2.2,24,'#ff8a65',W1,W2); const a=iso(x-1.1,y+1.1),b=iso(x+1.1,y+1.1); h+=`<polygon points="${a[0]},${a[1]-24} ${b[0]},${b[1]-24} ${b[0]-6},${b[1]-12} ${a[0]-6},${a[1]-12}" fill="#e74c3c"/><polygon points="${(a[0]*2+b[0])/3},${(a[1]*2+b[1])/3-24} ${(a[0]+b[0]*2)/3},${(a[1]+b[1]*2)/3-24} ${(a[0]+b[0]*2)/3-6},${(a[1]+b[1]*2)/3-12} ${(a[0]*2+b[0])/3-6},${(a[1]*2+b[1])/3-12}" fill="#fff"/>`; break; }
+    case 'assembly': h+=box(x,y,3.2,2.8,34,tc,W1,W2)+box(x-.8,y-.6,.5,.5,22,'#c0392b','#e06a5b','#b84a3c',34)+box(x+.2,y-.6,.5,.5,16,'#c0392b','#e06a5b','#b84a3c',34)+smoke(iso(x-.8,y-.6)[0]+4,iso(x-.8,y-.6)[1]-64); break;
+    case 'qc': h+=box(x,y,2.2,2.2,26,'#26a69a',W1,W2)+`<path d="M${px-7} ${py-27}l5 5 9-10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>`; break;
+    default: h+=box(x,y,2.4,2.4,28,tc,W1,W2)+box(x-.5,y-.5,.5,.5,20,'#c0392b','#e06a5b','#b84a3c',28)+smoke(iso(x-.5,y-.5)[0]+4,iso(x-.5,y-.5)[1]-56);
+  }
+  return `<g class="bld" data-act="${c.generic?'gnode':'comp'}" data-id="${c.id}">${h}</g>`; }
+const BH={farm:44,forest:52,mine:70,plant:48,warehouse:36,dc:38,store:40,assembly:74,qc:42,factory:64};
+function rng(seed){ return ()=>{ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+let gameScene=null;
+function drawGame(){
+  const P=S.P, sc=scope(), W=P.gw, H=P.gh;
+  const nodes = sc.generic? P.GN : P.companies.filter(c=>sc.comps.has(c.id));
+  const edges = sc.generic? P.GE : P.edges.filter(e=>sc.edges.has(e.id));
+  gameScene={nodes,edges};
+  const c0=iso(-3,-3),c1=iso(W,-3),c2=iso(W,H),c3=iso(-3,H);
+  let h=`<polygon points="${c3[0]},${c3[1]} ${c2[0]},${c2[1]} ${c2[0]},${c2[1]+22} ${c3[0]},${c3[1]+22}" fill="#6aa84f"/><polygon points="${c2[0]},${c2[1]} ${c1[0]},${c1[1]} ${c1[0]},${c1[1]+22} ${c2[0]},${c2[1]+22}" fill="#5b9544"/><polygon points="${ptsStr([c0,c1,c2,c3])}" fill="#93d66e"/>`;
+  let gl=''; for(let i=-3;i<=W;i+=1){ const a=iso(i,-3),b=iso(i,H); gl+=`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`; } for(let j=-3;j<=H;j+=1){ const a=iso(-3,j),b=iso(W,j); gl+=`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`; }
+  h+=`<path d="${gl}" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/>`;
+  /* خانه‌های اشغال‌شده */
+  const occ=new Set(), mark=(x,y,r)=>{ for(let a=Math.floor(x-r);a<=Math.ceil(x+r);a++) for(let b=Math.floor(y-r);b<=Math.ceil(y+r);b++) occ.add(a+','+b); };
+  nodes.forEach(n=>mark(n.g[0],n.g[1],2));
+  const allE = sc.generic? P.GE.map((e,i)=>[[4+i*7,P.mid],[11+i*7,P.mid]]) : edges.map(e=>e.gpath); // فقط مسیرهای مجاز، تا جای خالی درخت‌ها مسیر پنهانی را لو ندهد
+  allE.forEach(gp=>{ for(let i=1;i<gp.length;i++){ const a=gp[i-1],b=gp[i],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])); for(let k=0;k<=n;k++) mark(a[0]+(b[0]-a[0])*k/n,a[1]+(b[1]-a[1])*k/n,.6); } });
+  const R=rng(P.code.length*977+W*H);
+  for(let i=0;i<5;i++){ const x=2+R()*(W-6), y=2+R()*(H-6); if([...Array(9)].some((_,k)=>occ.has(Math.round(x+(k%3)-1)+','+Math.round(y+Math.floor(k/3)-1)))) continue; mark(x,y,1.5); const p=iso(x,y);
+    h+=`<ellipse cx="${p[0]}" cy="${p[1]}" rx="52" ry="24" fill="#7ecbf1" stroke="#b6e3f8" stroke-width="4"/><ellipse cx="${p[0]-10}" cy="${p[1]-4}" rx="10" ry="4" fill="#fff" opacity=".6"/>`; }
+  /* مسیرها */
+  let paths='', info='', hubs='', vehs='';
+  edges.forEach(e=>{ const c=e.color||P.B[e.branch].color;
+    paths+=`<g class="edge" data-e="${e.id}" style="--c:${c}">`+e.fr.map((f,i)=>{ const pts=ptsStr(lineSub(e.gl,f[0],f[1])), m=e.segs[i].mode;
+      return `<g class="seg" ${e.branch?`data-act="route" data-id="${e.id}" data-s="${i}"`:''}><polyline class="g${m}" points="${pts}"/><polyline class="g${m}2" points="${pts}"/></g>`; }).join('')+'</g>';
+    if(e.branch){ const a=iso(...P.C[e.from].g), b=iso(...P.C[e.to].g); info+=`<path class="info" data-e="${e.id}" d="M${a[0]} ${a[1]-30}Q${(a[0]+b[0])/2} ${Math.min(a[1],b[1])-110} ${b[0]} ${b[1]-30}"/>`;
+      e.fr.forEach((f,i)=>{ if(i===e.fr.length-1) return; const p=lineAt(e.gl,f[1]), port=e.segs[i].mode==='sea'||e.segs[i+1].mode==='sea';
+        hubs+=`<g transform="translate(${p[0]} ${p[1]})"><title>${e.segs[i].hub}</title>${port?`<path d="M-12 2h24l-4 7h-16z" fill="#1f6fb2"/><rect x="-7" y="-10" width="14" height="12" rx="2" fill="#fff" stroke="#1f6fb2" stroke-width="2"/><text y="0" text-anchor="middle" font-size="9" fill="#1f6fb2">⚓</text>`:`<rect x="-11" y="-12" width="22" height="14" rx="2" fill="#fff7e8" stroke="#7a5230" stroke-width="2"/><path d="M-13-12L0-20L13-12z" fill="#7a5230"/>`}</g>`; }); }
+    else info+=`<path class="info" d="M${e.gl.pts[0][0]} ${e.gl.pts[0][1]-30}Q${(e.gl.pts[0][0]+e.gl.pts[1][0])/2} ${e.gl.pts[0][1]-95} ${e.gl.pts[1][0]} ${e.gl.pts[1][1]-30}"/>`;
+    vehs+=`<g data-v="${e.id}">${vehHTML(e.id,e.branch?'veh':'gveh')}</g>`; });
+  h+=`<g id="game-routes">${paths}</g>${hubs}`;
+  /* درخت‌ها، کوه‌ها و ساختمان‌ها به ترتیب عمق */
+  const items=[];
+  for(let x=-2.4;x<W;x+=2.3){ const s=.7+R()*.7, p=iso(x,-2.4-R()*.4); items.push([x-2.4,`<path d="M${p[0]-34*s} ${p[1]+8}L${p[0]} ${p[1]-62*s}L${p[0]+34*s} ${p[1]+8}Z" fill="#a8adb5"/><path d="M${p[0]} ${p[1]-62*s}L${p[0]+34*s} ${p[1]+8}L${p[0]+6*s} ${p[1]+8}Z" fill="#8f949c"/><path d="M${p[0]-11*s} ${p[1]-42*s}L${p[0]} ${p[1]-62*s}L${p[0]+11*s} ${p[1]-42*s}L${p[0]+4*s} ${p[1]-47*s}L${p[0]-3*s} ${p[1]-41*s}Z" fill="#fff"/>`]); }
+  for(let y=0;y<H;y+=2.6){ const s=.6+R()*.6, p=iso(-2.4-R()*.4,y); items.push([y-2.4,`<path d="M${p[0]-34*s} ${p[1]+8}L${p[0]} ${p[1]-62*s}L${p[0]+34*s} ${p[1]+8}Z" fill="#a8adb5"/><path d="M${p[0]} ${p[1]-62*s}L${p[0]+34*s} ${p[1]+8}L${p[0]+6*s} ${p[1]+8}Z" fill="#8f949c"/><path d="M${p[0]-11*s} ${p[1]-42*s}L${p[0]} ${p[1]-62*s}L${p[0]+11*s} ${p[1]-42*s}L${p[0]+4*s} ${p[1]-47*s}L${p[0]-3*s} ${p[1]-41*s}Z" fill="#fff"/>`]); }
+  const nT=Math.round(W*H*.11); for(let i=0;i<nT;i++){ const x=-2+R()*(W+1), y=-1.5+R()*(H+.5); if(occ.has(Math.round(x)+','+Math.round(y))) continue; items.push([x+y,tree(x,y,R())]); }
+  nodes.forEach(n=>items.push([n.g[0]+n.g[1],building(n)]));
+  items.sort((a,b)=>a[0]-b[0]); h+=items.map(i=>i[1]).join('');
+  h+=`<g id="game-info">${info}</g><g id="game-veh">${vehs}</g>`;
+  h+=nodes.map(n=>{ const p=iso(...n.g), self=n.id===sc.self, top=p[1]-(BH[n.kind]||60)-16;
+    return `<g class="glabel" data-act="${n.generic?'gnode':'comp'}" data-id="${n.id}" transform="translate(${p[0]} ${top})">${pill(n.name+(self?' (شما)':''),TIER_COLOR[n.tier],self)}<g transform="translate(0 -24)">${n.generic?(n.kind==='store'?warnBadge('pub'):''):warnBadge(n.id)}</g></g>`; }).join('');
+  $('#game').innerHTML=`<g id="game-root">${h}<g id="game-ping"></g></g>`;
+  gamePZ=PanZoom2($('#game'),$('#game-root'));
+  fitGame(true);
+}
+/* برای نمای بازی، شیء جابه‌جایی فقط یک‌بار ساخته می‌شود و ریشه جدید به آن وصل می‌شود */
+let _gpz=null; function PanZoom2(svg,g){ if(!_gpz) _gpz=new PanZoom(svg,g,{min:.18,max:3.2}); _gpz.g=g; return _gpz; }
+function fitGame(instant){ const pts=[]; gameScene.nodes.forEach(n=>{ const p=iso(...n.g); pts.push([p[0]-70,p[1]-110],[p[0]+70,p[1]+40]); }); gamePZ.fit(bbox(pts),30,1.5,instant); }
+
+/* ---------- به‌روزرسانی هر فریم ---------- */
+const _vcache=new WeakMap();
+function setVeh(g,mode,color,flip,bad){ const c=_vcache.get(g)||{}; const key=mode+color;
+  if(c.key!==key){ g.querySelector('.vs').innerHTML=sprite(mode,color); c.key=key; }
+  if(c.flip!==flip){ g.querySelector('.vs').setAttribute('transform',flip?'scale(-1 1)':''); c.flip=flip; }
+  if(c.bad!==bad){ g.querySelector('.vb').style.display=bad?'block':'none'; c.bad=bad; } _vcache.set(g,c); }
+const vehPos={};
+function drawVehicles(){
+  const P=S.P, sc=scope(), geo=S.view==='geo';
+  if(sc.generic){ if(geo) return; const tt=(SIM.clock||0);
+    P.GE.forEach((e,i)=>{ const g=document.querySelector(`#game-veh [data-v="${e.id}"]`); if(!g) return; const f=((tt/9)+i*.37)%1, p=lineAt(e.gl,f);
+      g.setAttribute('transform',`translate(${p[0].toFixed(1)} ${(p[1]-6).toFixed(1)})`); setVeh(g.firstChild,'road',['#f6c453','#4fc3f7','#ff8a65','#81c784'][i],p[2]<0,false); }); return; }
+  const inv=1/geoPZ.k;
+  for(const e of P.edges){ if(!sc.edges.has(e.id)) continue; const s=SIM.ships[e.id], sg=e.segs[s.seg], col=P.B[e.branch].color, bad=shipData(s)[1]!=='ok';
+    if(geo){ const g=document.querySelector(`#geo-veh [data-v="${e.id}"]`); if(!g) continue; const p=lineAt(e.geo[s.seg],s.u); vehPos[e.id]=p;
+      g.setAttribute('transform',`translate(${p[0].toFixed(2)} ${p[1].toFixed(2)}) scale(${inv*.8})`); setVeh(g.firstChild,sg.mode,col,p[2]<0,bad); }
+    else { const g=document.querySelector(`#game-veh [data-v="${e.id}"]`); if(!g) continue; const p=lineAt(e.gl,shipFrac(e,s)); vehPos[e.id]=p;
+      g.setAttribute('transform',`translate(${p[0].toFixed(1)} ${(p[1]-6).toFixed(1)})`); setVeh(g.firstChild,sg.mode,col,p[2]<0,bad); } }
+}
+function ping(edgeId,cls){ const p=vehPos[edgeId]; if(!p) return; const geo=S.view==='geo', host=$(geo?'#geo-ping':'#game-ping'); if(!host||host.childElementCount>14) return;
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g'); g.setAttribute('transform',`translate(${p[0]} ${p[1]}) scale(${geo?1/geoPZ.k:1})`);
+  g.innerHTML=`<circle r="6" class="pingc ${cls||''}"/>${cls?'':'<path d="M-4 0l3 3 5-6" stroke="#fff" stroke-width="2" fill="none" class="pingk"/>'}`; host.appendChild(g); setTimeout(()=>g.remove(),1300); }
+
+/* ---------- برجسته‌سازی و تمرکز ---------- */
+function applyHL(){ $$('#geo .edge, #game .edge').forEach(g=>{ const e=S.P.E[g.dataset.e]; if(!e) return;
+    g.classList.toggle('dim', !!((S.branch&&e.branch!==S.branch)||(S.selEdge&&S.selEdge!==e.id&&!S.branch)));
+    g.classList.toggle('hl', S.selEdge===e.id);
+    g.querySelectorAll('.seg').forEach(s=>s.classList.toggle('hls', S.selEdge===e.id && S.selSeg!=null && +s.dataset.s===S.selSeg)); });
+  $$('#geo [data-v], #game [data-v]').forEach(g=>{ const e=S.P.E[g.dataset.v]; if(e) g.classList.toggle('dimv', !!(S.branch&&e.branch!==S.branch)); });
+  $$('#geo .info, #game .info').forEach(g=>{ const e=S.P.E[g.dataset.e]; if(e) g.classList.toggle('dimv', !!(S.branch&&e.branch!==S.branch)); });
+  $$('#geo .comp, #game .glabel').forEach(g=>g.classList.toggle('sel', S.selComp===g.dataset.id)); if(geoPZ&&S.P&&S.ctx.role) layoutLabels(); }
+function focusComp(id){ const c=S.P.C[id]; if(!c||!canComp(id)) return; S.selComp=id; applyHL();
+  if(S.view==='geo'){ const p=gxy(c.ll); geoPZ.fit([p[0]-14,p[1]-10,p[0]+14,p[1]+10],40,12); } else { const p=iso(...c.g); gamePZ.fit([p[0]-260,p[1]-220,p[0]+260,p[1]+160],20,1.5); } }
+function focusEdge(id,seg){ const e=S.P.E[id]; if(!e||!canEdge(id)) return; S.selEdge=id; S.selSeg=seg; applyHL();
+  if(S.view==='geo'){ const pts= seg!=null? e.geo[seg].pts : e.geo.flatMap(L=>L.pts); geoPZ.fit(bbox(pts),90,14); }
+  else { const pts= seg!=null? lineSub(e.gl,e.fr[seg][0],e.fr[seg][1]) : e.gl.pts; const b=bbox(pts); gamePZ.fit([b[0]-120,b[1]-140,b[2]+120,b[3]+80],20,1.5); } }
+function focusRegion(country){ const r=REGION[country]; if(!r) return; if(S.view==='geo'){ const p=gxy([r[1],r[2]]); geoPZ.fit([p[0]-70,p[1]-55,p[0]+70,p[1]+55],30,5); } }
+function focusBranch(b){ const es=S.P.edges.filter(e=>e.branch===b&&canEdge(e.id)); if(!es.length) return;
+  if(S.view==='geo') geoPZ.fit(bbox(es.flatMap(e=>e.geo.flatMap(L=>L.pts))),80,14); else { const bb=bbox(es.flatMap(e=>e.gl.pts)); gamePZ.fit([bb[0]-120,bb[1]-150,bb[2]+120,bb[3]+80],20,1.4); } }
+
+/* ui.js — صفحه‌ها، شناسنامه دیجیتال، رهگیری، نمودار شبکه و اتصال رویدادها */
+const IC={chevron:'M6 9l6 6 6-6',check:'M5 12l5 5 9-10',checkc:'M12 3a9 9 0 100 18 9 9 0 000-18zM8 12l3 3 5-6',user:'M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c1-4 4.5-6 8-6s7 2 8 6',factory:'M3 20V10l6 4V10l6 4V6h4v14z',gear:'M12 8a4 4 0 100 8 4 4 0 000-8zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2',flask:'M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3',leaf:'M5 19c0-9 5-14 15-14 0 10-5 15-14 14zM5 19l8-8',road:'M2 7h11v9H2zM13 10h5l3 3v3h-8zM6 19a2 2 0 100-4 2 2 0 000 4zM17 19a2 2 0 100-4 2 2 0 000 4z',rail:'M6 3h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zM4 10h16M8 21l2-4M16 21l-2-4M8.5 13.5h.01M15.5 13.5h.01',sea:'M3 15l2 5h14l2-5-9-3zM6 13V7h12v6M12 3v4',box:'M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8',shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4',book:'M4 5a2 2 0 012-2h6v16H6a2 2 0 00-2 2zM20 5a2 2 0 00-2-2h-6v16h6a2 2 0 012 2z',recycle:'M12 4l3 5H9zM4.5 16.5L9 9M19.5 16.5L15 9M7 19h10M7 19H4l1.5-2.5M17 19h3l-1.5-2.5',info:'M12 3a9 9 0 100 18 9 9 0 000-18zM12 11v6M12 7.5v.5',lock:'M6 11h12v9H6zM8 11V8a4 4 0 018 0v3',alert:'M12 3l10 18H2zM12 10v5M12 18v.5',map:'M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14',net:'M5 5h4v4H5zM15 5h4v4h-4zM10 15h4v4h-4zM7 9v3h10V9M12 12v3',play:'M7 4l13 8-13 8z',pause:'M7 4h3v16H7zM14 4h3v16h-3z',restart:'M4 12a8 8 0 108-8H7M7 4L4 7l3 3',back:'M5 12h14M13 6l6 6-6 6',pin:'M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12zM12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',chart:'M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-7',passport:'M6 3h12v18H6zM12 13a3 3 0 100-6 3 3 0 000 6zM9 17h6',power:'M12 3v9M6.5 6.5a8 8 0 1011 0',swap:'M4 8h13l-3-3M20 16H7l3 3',x:'M6 6l12 12M18 6L6 18',key:'M14 10a4 4 0 11-3.5 6H8v2H6v2H3v-3l6-6a4 4 0 015-1zM15.5 12.5h.01'};
+const ic=(n,s)=>`<svg class="ic" width="${s||18}" height="${s||18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${IC[n]}"/></svg>`;
+const ART={
+ shoe:`<svg viewBox="0 0 120 90"><ellipse cx="60" cy="78" rx="48" ry="6" fill="rgba(0,0,0,.12)"/><path d="M14 66c-2-14 4-30 12-36 4 6 10 9 16 8 6 9 18 16 34 19 14 2.5 26 6 30 14v5H14z" fill="#F5A623"/><path d="M26 30c4 6 10 9 16 8l6 8-18 6c-6-6-8-14-4-22z" fill="#ffca6b"/><path d="M12 70h96a4 4 0 010 8H16a4 4 0 01-4-4z" fill="#fff" stroke="#6B4226" stroke-width="2"/><path d="M48 44l8-5M55 49l8-5M62 53l8-5" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M14 66c-2-14 4-30 12-36 4 6 10 9 16 8 6 9 18 16 34 19 14 2.5 26 6 30 14" fill="none" stroke="#6B4226" stroke-width="2.5" stroke-linejoin="round"/></svg>`,
+ phone:`<svg viewBox="0 0 120 90"><ellipse cx="60" cy="82" rx="30" ry="5" fill="rgba(0,0,0,.12)"/><rect x="38" y="6" width="44" height="74" rx="9" fill="#34495e" stroke="#2c3e50" stroke-width="2.5"/><rect x="42" y="12" width="36" height="60" rx="5" fill="#6ec6f0"/><path d="M42 50l12-12 10 9 8-7 6 6v11a5 5 0 01-5 5H47a5 5 0 01-5-5z" fill="#93d66e"/><circle cx="68" cy="24" r="5" fill="#ffd54f"/><rect x="54" y="8" width="12" height="2.5" rx="1.2" fill="#2c3e50"/></svg>`,
+ chair:`<svg viewBox="0 0 120 90"><ellipse cx="60" cy="83" rx="34" ry="5" fill="rgba(0,0,0,.12)"/><path d="M38 8h8v44h-8zM74 8h8v44h-8z" fill="#b9824c" stroke="#6B4226" stroke-width="2"/><rect x="42" y="12" width="36" height="9" rx="3" fill="#d9a066" stroke="#6B4226" stroke-width="2"/><rect x="42" y="27" width="36" height="9" rx="3" fill="#d9a066" stroke="#6B4226" stroke-width="2"/><rect x="32" y="48" width="56" height="10" rx="4" fill="#e0aa72" stroke="#6B4226" stroke-width="2"/><path d="M36 58h7v24h-7zM77 58h7v24h-7z" fill="#b9824c" stroke="#6B4226" stroke-width="2"/></svg>`};
+const stBadge=(k,t)=>`<i class="st ${k}">${t}</i>`;
+const ST={ok:['ok','تأیید آزمایشی'],review:['rev','در انتظار بررسی'],expired:['exp','اعتبار منقضی شده'],na:['na','اطلاعات موجود نیست'],lock:['lock','دسترسی محدود است'],bad:['exp','ثبت نشده']};
+const LOCK=`${ic('lock',13)}<i class="st lock">دسترسی محدود است</i>`;
+const row=(l,v)=>`<div class="row"><span>${l}</span><b>${v}</b></div>`;
+const isMobile=()=>window.innerWidth<760;
+const roleLabel=()=>{ const r=roleOf(S.ctx.role); return S.ctx.comp? S.P.C[S.ctx.comp].name : r.title; };
+
+/* ---------- صفحه‌ها ---------- */
+function showScreen(id){ $$('.screen').forEach(s=>s.classList.toggle('on',s.id===id)); }
+function renderProducts(){
+  $('#s-product').innerHTML=`<div class="wrap"><span class="demo big">نمونه آموزشی · همه داده‌ها ساختگی و نمایشی‌اند</span>
+   <h1>سفر یک محصول را کشف کن</h1><p class="sub">از مواد اولیه تا محصول نهایی؛ داستان زنجیره تأمین را دنبال کن.</p>
+   <div class="cards">${Object.values(PRODUCTS).map(p=>`<article class="pcard"><div class="art">${ART[p.id]}</div><h2>${p.name}</h2><p>${p.blurb}</p><button class="btn" data-act="pick-product" data-id="${p.id}">انتخاب محصول</button></article>`).join('')}</div>
+   <p class="motto">«هر محصول یک مسیر دارد؛ گذرنامه دیجیتال این مسیر را برای افراد مجاز، شفاف‌تر و قابل ردیابی‌تر می‌کند.»</p></div>`;
+}
+let PICK={role:null,comp:null};
+function renderRoles(){
+  const P=S.P, r=PICK.role&&roleOf(PICK.role); let extra='';
+  if(r&&r.tier){ extra+=`<h3>کدام شرکت هستی؟</h3><div class="complist">${P.companies.filter(c=>c.tier===r.tier).map(c=>`<button class="cbtn ${PICK.comp===c.id?'sel':''}" data-act="pick-comp" data-id="${c.id}"><i style="background:${TIER_COLOR[c.tier]}"></i>${c.name}<small>${c.city}، ${c.country}</small></button>`).join('')}</div>`; }
+  const ready=r&&(!r.tier||PICK.comp);
+  if(ready) extra+=`<div class="confirm"><p>شما در نقش <b>${r.tier?P.C[PICK.comp].name:r.title}</b> هستید.</p><button class="btn" data-act="enter">ورود به زنجیره تأمین</button></div>`;
+  $('#s-role').innerHTML=`<div class="wrap"><div class="rtop"><button class="link" data-act="home">${ic('back',16)} بازگشت به انتخاب محصول</button>${S.ctx.role?`<button class="link" data-act="back-main">بازگشت به نقشه</button>`:''}</div>
+   <div class="mini"><div class="art sm">${ART[P.id]}</div><b>${P.model}</b></div>
+   <h1>در زنجیره تأمین چه نقشی داری؟</h1><p class="sub">هر عضو زنجیره تأمین به اطلاعات متفاوتی دسترسی دارد. نقش خودت را انتخاب کن.</p>
+   <div class="roles">${ROLES.map(x=>`<button class="rcard ${PICK.role===x.id?'sel':''}" data-act="pick-role" data-id="${x.id}"><span class="ricon">${ic(x.icon,26)}</span><b>${x.title}</b><span>${x.desc}</span></button>`).join('')}</div>
+   <div id="roleextra">${extra}</div>
+   <p class="note">${ic('info',15)} انتخاب نقش در این نسخه فقط یک شبیه‌سازی آموزشی است، نه احراز هویت واقعی. در سامانه واقعی، دسترسی‌ها با احراز هویت و مجوزهای سمت سرور کنترل می‌شوند.</p></div>`;
+  if(ready||(r&&r.tier)) setTimeout(()=>$('#roleextra').scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+function enterMain(){
+  _scope=null; Object.assign(S,{branch:null,step:null,selEdge:null,selSeg:null,selComp:null,panel:null,shipFilter:null,open:{info:true}});
+  showScreen('s-main'); closePanel(); $('#net').classList.remove('on');
+  updateHeader(); drawGame(); drawGeo(); setView(S.view); renderLegend(); updateDppUI(); drawVehicles(); applyHL();
+  if(!S.guided){ S.guided=true; $('#guide').classList.add('on'); }
+}
+function updateHeader(){ const P=S.P;
+  $('#hprod').innerHTML=`<span class="art xs">${ART[P.id]}</span><span><b>${P.name}</b><small>نقش: ${roleLabel()}</small></span>`;
+  const b=$('#simbtn'); b.innerHTML = !SIM.started? `${ic('play',16)}<span>شروع شبیه‌سازی</span>` : SIM.running? `${ic('pause',16)}<span>توقف موقت</span>` : `${ic('play',16)}<span>ادامه</span>`; b.classList.toggle('pulse',!SIM.started);
+  $('#clock').textContent='زمان شبیه‌سازی: '+jtime(SIM.t); }
+function setView(v){ S.view=v; $('#game').classList.toggle('on',v==='game'); $('#geo').classList.toggle('on',v==='geo'); $$('#viewsw button').forEach(b=>b.classList.toggle('on',b.dataset.id===v)); drawVehicles(); applyHL(); }
+function renderLegend(){ const P=S.P, sc=scope();
+  const br = sc.generic? '' : `<h4>مسیر مواد</h4>${visBranches().map(b=>`<span><i class="ln" style="background:${b.color}"></i>${b.name}</span>`).join('')}`;
+  $('#legend').innerHTML=`<summary>${ic('info',15)} راهنمای نقشه</summary><div><h4>سطوح زنجیره تأمین</h4>${[3,2,1,0].map(t=>`<span><i class="dot" style="background:${TIER_COLOR[t]}"></i>${TIER_NAME[t]}</span>`).join('')}${br}<h4>شیوه حمل‌ونقل</h4><span><i class="ln road"></i>جاده‌ای (کامیون)</span><span><i class="ln rail"></i>ریلی (قطار)</span><span><i class="ln sea"></i>دریایی (کشتی)</span></div>`;
+  $('#legend').open=!isMobile()&&false; }
+function updateDppUI(){ const on=SIM.dpp; $('#s-main').classList.toggle('dpp-off',!on);
+  $('#dppbtn').innerHTML= on? `${ic('power',16)}<span>غیرفعال‌سازی گذرنامه دیجیتال<small>شبیه‌سازی قطع دسترسی به اطلاعات</small></span>` : `${ic('power',16)}<span>فعال‌سازی مجدد گذرنامه دیجیتال<small>ازسرگیری ثبت اطلاعات</small></span>`;
+  $('#dppbtn').classList.toggle('off',!on);
+  $('#dppstat').className='pillst '+(on?'ok':'bad'); $('#dppstat').innerHTML= on? `${ic('checkc',14)} گذرنامه دیجیتال: فعال` : `${ic('alert',14)} گذرنامه دیجیتال: قطع آزمایشی`;
+  const r=S.ctx.role; const msg = r==='consumer'? 'آخرین اطلاعات رهگیری محصول در دسترس نیست.' : r==='manufacturer'? 'دریافت اطلاعات رهگیری از تأمین‌کنندگان با مشکل مواجه شده است.' : 'ثبت اطلاعات ورودی‌ها و خروجی‌های کارخانه شما متوقف شده است.';
+  $('#banner').innerHTML= on? '' : `<div>${ic('alert',16)} <b>تبادل اطلاعات قطع است.</b> کالاها همچنان جابه‌جا می‌شوند، اما رویداد جدیدی ثبت نمی‌شود. ${msg}</div>`; }
+function toast(msg,kind){ const t=document.createElement('div'); t.className='toast '+(kind||''); t.innerHTML=(kind==='warn'?ic('alert',15):ic('checkc',15))+msg; const h=$('#toasts'); if(h.childElementCount>2) h.firstChild.remove(); h.appendChild(t); setTimeout(()=>t.remove(),2600); }
+
+/* ---------- پنل کناری ---------- */
+function openPanel(p){ S.panel=p; const el=$('#panel'); el.classList.add('on'); $('#stage').classList.add('popen'); $('#stage').classList.remove('peeking'); el.classList.remove('peek'); el.classList.toggle('dark',p.type==='passport'); el.classList.toggle('full',p.type==='passport'); renderPanel();
+  const ins=isMobile()?0:420; if(geoPZ) geoPZ.inset=ins; if(gamePZ) gamePZ.inset=ins; }
+function closePanel(){ S.panel=null; $('#panel').classList.remove('on','peek'); $('#stage').classList.remove('popen','peeking'); if(geoPZ) geoPZ.inset=0; if(gamePZ) gamePZ.inset=0; }
+function renderPanel(keep){ const p=S.panel; if(!p) return; const body=$('#pbody'), sc=body.scrollTop;
+  const R={passport:passportHTML,ship:shipHTML,comp:compHTML,edge:edgeHTML,alert:alertHTML,region:regionHTML,gnode:gnodeHTML,gveh:gvehHTML,pub:pubHTML}[p.type](p);
+  $('#ptitle').innerHTML=R[0]; body.innerHTML=R[1]; body.scrollTop=keep?sc:0; }
+const sec=(id,title,icon,body)=>`<details class="acc" data-sec="${id}" ${S.open[id]?'open':''}><summary>${ic(icon,20)}<span>${title}</span>${ic('chevron',18)}</summary><div class="accb" id="sec-${id}">${body}</div></details>`;
+
+/* ---------- شناسنامه دیجیتال محصول ---------- */
+function lastUpd(){ const ev=[...SIM.events].reverse().find(eventVisible); return jtime(ev?ev.t:S.P.lastDay+.5); }
+function passportHTML(){ const P=S.P, r=S.ctx.role;
+  const head=`<div class="phead"><div class="art pp">${ART[P.id]}</div><div><h2>${P.model}</h2><small>گذرنامه دیجیتال محصول (DPP)</small>
+     <p class="verif">${ic('checkc',17)} وضعیت اطلاعات: تأیید آزمایشی <em>(شبیه‌سازی‌شده)</em></p></div></div>
+    <div class="rows">${row('برند',P.brand+' (فرضی)')}${row('کد محصول',P.code)}${row('شناسه عمومی گذرنامه',P.pid)}${row('آخرین به‌روزرسانی',`<span id="lastupd">${lastUpd()}</span>`)}${row('سطح دسترسی شما',roleLabel())}</div>
+    <div id="ppdpp">${SIM.dpp?'':`<p class="offnote">${ic('alert',15)} تبادل اطلاعات به‌صورت آزمایشی قطع است؛ رویدادهای جدید در این شناسنامه ثبت نمی‌شوند.</p>`}</div>`;
+  return ['شناسنامه دیجیتال محصول', head+sec('info','اطلاعات محصول','box',infoHTML())+sec('track','اطلاعات تولید و رهگیری','chart',`<div id="trk">${trackHTML()}</div>`)+sec('mat','مواد اولیه و پایداری','leaf',matHTML())+sec('cert','استانداردها و گواهی‌ها','shield',certHTML())+sec('care','راهنمای استفاده و نگهداری','book',careHTML())+sec('eol','پایان عمر و بازیافت','recycle',`<div id="eolb">${eolHTML()}</div>`)+sec('acl','سطح دسترسی و وضعیت داده‌ها','key',aclHTML())+
+    `<p class="motto dk">«هر محصول یک مسیر دارد؛ گذرنامه دیجیتال این مسیر را برای افراد مجاز، شفاف‌تر و قابل ردیابی‌تر می‌کند.»</p><p class="fine">همه اطلاعات این شناسنامه ساختگی و نمایشی‌اند و هیچ گواهی واقعی صادر نشده است.</p>`]; }
+function infoHTML(){ const P=S.P, r=S.ctx.role, sup=r[0]==='t';
+  return `<div class="rows">${row('نام محصول',P.model)}${row('برند',P.brand)}${row('کد محصول',P.code)}${row('شناسه دسته تولید',r==='manufacturer'||r==='t1'?P.lot:LOCK)}${row('کشور تولیدکننده',sup&&r!=='t1'?LOCK:P.madeIn)}${row('تاریخ تولید',r==='consumer'?jmonth(A_DAY):sup&&r!=='t1'?LOCK:jdate(A_DAY))}${row('ترکیبات اصلی',P.comp.map(c=>c[0]).join('، '))}${row('تولیدکننده',P.maker)}</div>`; }
+function visBranches(){ const P=S.P, r=S.ctx.role; if(r==='consumer'||r==='manufacturer') return P.branches; return P.branches.filter(b=>P.edges.some(e=>e.branch===b.id&&canEdge(e.id))); }
+function visSteps(b){ const L=S.P.steps[b], r=S.ctx.role; if(r==='consumer'||r==='manufacturer') return L; return L.filter(s=>s.kind==='move'?canEdge(s.edge):canComp(s.comp)); }
+function trackHTML(){ const P=S.P, r=S.ctx.role, con=r==='consumer', brs=visBranches();
+  const note = con? 'نمای عمومی: مراحل به‌صورت خلاصه و در سطح کشور نمایش داده می‌شوند. نام شرکت‌ها، مسیر دقیق و شناسه محموله‌ها محرمانه است.' : r==='manufacturer'? 'نمای تولیدکننده نهایی: همه شاخه‌هایی که شرکای تجاری در این سناریو با شما به اشتراک گذاشته‌اند.' : 'نمای تأمین‌کننده: فقط ورودی‌ها، خروجی‌ها و طرف‌های مستقیم کارخانه شما. سایر بخش‌های زنجیره خارج از سطح دسترسی شماست.';
+  let h=`<p class="tnote">${ic(con?'info':'key',14)} ${note}</p><p class="tlabel">یک ماده یا قطعه را انتخاب کن:</p><div class="chips">${brs.map(b=>`<button class="chip ${S.branch===b.id?'on':''}" style="--c:${b.color}" data-act="branch" data-id="${b.id}"><i></i>${b.name}</button>`).join('')}</div>`;
+  if(S.branch&&brs.some(b=>b.id===S.branch)){ const b=P.B[S.branch], steps=visSteps(b.id);
+    h+=`<div class="steps" style="--c:${b.color}">`+steps.map((s,i)=>{ const sel=S.step&&S.step.b===b.id&&S.step.n===s.n; const e=s.edge&&P.E[s.edge];
+      const title = con&&s.kind==='move'? `حمل ${MODE_NAME[s.mode]}` : s.title;
+      const sub = con? (s.kind==='move'?`به مقصد ${s.country}`:s.country) : s.kind==='move'? `${s.fromCity} ← ${s.city}` : `${P.C[s.comp].name} · ${s.city}، ${s.country}`;
+      let d='';
+      if(sel){ if(s.kind==='move'){ const sh=SIM.ships[e.id];
+          d=`${row('مکان',con?`${s.country} (در سطح کشور)`:`${s.fromCity} ← ${s.city}`)}${row('نوع حمل‌ونقل',`${MODE_NAME[s.mode]} · ${MODE_VEH[s.mode]}`)}${con?'':row('مسافت تقریبی',fa(e.segs[s.seg].km.toLocaleString('en'))+' کیلومتر')}${row('ماده / قطعه',e.mat)}${row('شرکت فرستنده',con?LOCK:P.C[e.from].name)}${row('شناسه محموله (دسته نمونه)',con?LOCK:`SHP-${P.code.slice(4)}-${String(e.n).padStart(2,'0')}-H01`)}${row('وضعیت محموله','تحویل‌شده')}${row('رویداد DPP',stBadge('ok','ثبت‌شده – تأیید آزمایشی'))}${row(con?'بازه زمانی':'بازه حمل',con?jmonth(s.day):`${jdate(s.from)} تا ${jdate(s.day)}`)}${con?'':row('محموله جاری همین مسیر',`${sh.id} · ${shipStatus(e,sh)}`)}
+           <div class="sbtns"><button class="mini" data-act="show-map">${ic('map',14)} نمایش روی نقشه</button>${con?'':`<button class="mini" data-act="veh" data-id="${e.id}">${ic('box',14)} اطلاعات محموله جاری</button>`}</div>`; }
+        else { const c=P.C[s.comp]; d=`${row('مکان',con?`${s.country} (در سطح کشور)`:`${c.city}، ${c.country}`)}${row('شرکت',con?LOCK:c.name)}${row('نوع رویداد',s.deliver?'تحویل محموله':c.tier===3?'تأمین مواد اولیه':c.kind==='assembly'?'مونتاژ محصول':c.tier===0?'ورود / توزیع':'ثبت تبدیل مواد به قطعه')}${row('شناسه دسته (نمونه)',con?LOCK:`BAT-${c.code}-H01`)}${row('رویداد DPP',stBadge('ok','ثبت‌شده – تأیید آزمایشی'))}${row('تاریخ',con?jmonth(s.day):jdate(s.day))}
+           <div class="sbtns"><button class="mini" data-act="show-map">${ic('map',14)} نمایش روی نقشه</button></div>`; } }
+      return `<div class="stepw ${sel?'sel':''}"><button class="step" data-act="step" data-b="${b.id}" data-n="${s.n}"><span class="num">${fa(i+1)}</span><span class="sic">${ic(s.kind==='move'?s.mode:(s.deliver?'check':'factory'),19)}</span><span class="stt"><b>${title}</b><small>${sub}</small></span><span class="sdate">${con?jmonth(s.day):jdate(s.day)}</span></button>${sel?`<div class="stepd">${d}</div>`:''}</div>`; }).join('')+`</div>`;
+  } else h+=`<p class="thint">با انتخاب هر مسیر، مراحل آن به ترتیب زمانی نمایش داده و روی نقشه برجسته می‌شود.</p>`;
+  h+=`<div class="legendbox"><b>${ic('net',15)} راهنمای مسیرها</b><div>${brs.map(b=>`<span><i style="background:${b.color}"></i>${b.name}</span>`).join('')}</div></div><div id="live">${liveHTML()}</div>
+   <button class="mini wide" data-act="goto-eol">${ic('recycle',14)} پس از مصرف چه اتفاقی می‌افتد؟</button>`;
+  return h; }
+function liveHTML(){ const P=S.P, con=isConsumer(); let h='';
+  if(S.shipFilter&&!con){ const evs=SIM.events.filter(e=>e.ship===S.shipFilter&&eventVisible(e)); h+=`<h4>سوابق رهگیری محموله ${S.shipFilter}</h4><div class="evl">${evs.length?evs.map(evRow).join(''):'<p class="thint">هنوز رویدادی برای این محموله ثبت نشده است.</p>'}</div>`; }
+  const evs=SIM.events.filter(eventVisible).slice(-6).reverse();
+  h+=`<h4>رویدادهای تازه ثبت‌شده <small>(شبیه‌سازی زنده)</small></h4><div class="evl">${evs.length?evs.map(evRow).join(''):`<p class="thint">${con?'برای نقش مصرف‌کننده فقط رویدادهای عمومی (مانند تحویل به فروشگاه) نمایش داده می‌شود.':'با شروع شبیه‌سازی، رویدادهای جدید اینجا اضافه می‌شوند.'}</p>`}</div>`;
+  const gaps=[...SIM.gaps]; if(SIM.gapOpen) gaps.push(SIM.gapOpen);
+  gaps.slice(-3).forEach(g=>{ const n=gapCount(g); if(n===0) return; h+=`<p class="gap">${ic('alert',14)} شکاف اطلاعاتی از ${jtime(g.from)} ${g.to?'تا '+jtime(g.to):'(ادامه دارد)'}: ${n==null?'اطلاعات رهگیری این بازه در دسترس نیست':fa(n)+' رویداد ثبت نشده است'}. ${stBadge('exp','ثبت نشده – تأییدنشده')}</p>`; });
+  if(!con){ const sc=scope(), oe=P.out[sc.self][0]; if(oe){ const root=SIM.batches[SIM.ships[oe.id].batch];
+      const node=(b,d)=>{ const c=P.C[b.comp]; const kids = b.inputs===null? `<li class="lbad">${ic('alert',13)} ارتباط با دسته‌های ورودی ثبت نشده است</li>` : b.inputs.map(id=>SIM.batches[id]).filter(x=>x&&canComp(x.comp)&&d<4).map(x=>node(x,d+1)).join('');
+        return `<li><span class="bid">${b.id}</span> ${b.mat}<small> · ${c.name}</small>${kids?`<ul>${kids}</ul>`:''}</li>`; };
+      h+=`<h4>ارتباط دسته‌های ورودی و خروجی <small>(در محدوده دسترسی شما)</small></h4><ul class="tree">${node(root,0)}</ul>`; } }
+  return h; }
+const evRow=e=>`<div class="ev"><b>${e.type}</b><span>${isConsumer()?S.P.C[e.comp].country:e.place}${e.mode?' · '+MODE_NAME[e.mode]:''}</span><small>${jtime(e.t)}${isConsumer()?'':' · '+e.ship+' · '+e.id}</small></div>`;
+function matHTML(){ const P=S.P, sup=S.ctx.role[0]==='t', sc=scope();
+  const comp=P.comp.map(c=>`<div class="bar"><span>${c[0]}</span><i><u style="width:${c[1]}%"></u></i><b>${fa(c[1])}٪</b></div>`).join('');
+  const myB = sup? new Set(P.edges.filter(e=>canEdge(e.id)).map(e=>e.branch)) : null;
+  const t3=P.companies.filter(c=>c.tier===3);
+  const origins=t3.filter(c=>!sup||P.out[c.id].some(e=>myB.has(e.branch))).map(c=>row(c.out,'منشأ کلی: '+REGION[c.country][0])).join('');
+  return `<h4>مواد تشکیل‌دهنده</h4>${comp}<h4>منشأ عمومی مواد اولیه</h4><div class="rows">${origins}${sup?row('سایر مواد',LOCK+' <small>(نامرتبط با فعالیت شما)</small>'):''}</div><h4>پایداری و چرخه عمر</h4><div class="rows">${P.sustain.map(s=>row(s[0], s[2]==='na'?stBadge('na','اطلاعات موجود نیست'): s[2]==='review'?s[1]+' '+stBadge('rev','در انتظار بررسی') : s[1])).join('')}</div>`; }
+function certHTML(){ return S.P.certs.map(c=>`<div class="cert ${c[4]}"><b>${c[0]}</b>${row('صادرکننده',c[1])}${row('تاریخ صدور',c[2])}${row('تاریخ اعتبار',c[3])}${row('وضعیت بررسی',stBadge(ST[c[4]][0],ST[c[4]][1]))}${c[4]==='expired'?'<p class="fine">این گواهی منقضی شده و به‌عنوان گواهی معتبر محسوب نمی‌شود.</p>':''}</div>`).join('')+'<p class="fine">گواهی‌ها نمونه آموزشی‌اند و به هیچ نهاد واقعی اشاره ندارند.</p>'; }
+const careHTML=()=>`<ul class="care">${S.P.care.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+function eolHTML(){ const P=S.P, e=P.eol[S.eol]||P.eol[0]; return `<p class="tlabel">پس از مصرف چه اتفاقی می‌افتد؟</p><div class="chips">${P.eol.map((x,i)=>`<button class="chip ${i===S.eol?'on':''}" style="--c:#27AE60" data-act="eol" data-id="${i}"><i></i>${x[0]}</button>`).join('')}</div><div class="eolc"><b>${e[0]}</b><p>${e[1]}</p><p class="use">${ic('passport',15)} اطلاعات مفید در شناسنامه دیجیتال: ${e[2]}</p></div>`; }
+function aclHTML(){ const r=S.ctx.role, col=r==='consumer'?1:r==='manufacturer'?2:3;
+  return `<p class="tnote">${ic('info',14)} این جدول سیاست نمونه همین بازی است، نه قانون یکسان برای همه DPPهای واقعی. ستون نقش فعلی شما پررنگ شده است.</p>
+   <div class="tblw"><table class="pol"><tr><th>اطلاعات</th><th class="${col===1?'me':''}">مصرف‌کننده</th><th class="${col===2?'me':''}">تولیدکننده نهایی</th><th class="${col===3?'me':''}">تأمین‌کننده</th></tr>${POLICY.map(p=>`<tr><td>${p[0]}</td>${[1,2,3].map(i=>`<td class="${col===i?'me':''}">${p[i]}</td>`).join('')}</tr>`).join('')}</table></div>
+   <h4>وضعیت‌های داده</h4><div class="sts">${stBadge('ok','اطلاعات موجود است')}${stBadge('ok','تأیید شده (آزمایشی)')}${stBadge('rev','در انتظار بررسی')}${stBadge('na','اطلاعات در دسترس نیست')}${stBadge('lock','دسترسی محدود است')}${stBadge('exp','اطلاعات ثبت نشده است')}${stBadge('exp','اعتبار منقضی شده')}</div>
+   <p class="fine">«ثبت‌نشده» با «محرمانه» فرق دارد: اولی یعنی داده‌ای وجود ندارد، دومی یعنی داده هست اما نقش شما مجوز دیدن آن را ندارد. وجود یک رکورد در DPP هم به معنای صحت‌سنجی واقعی آن نیست.</p>
+   <p class="fine">نکته امنیتی: در این نمونه، فیلتر دسترسی در مرورگر انجام می‌شود و امنیت واقعی ایجاد نمی‌کند. در سامانه واقعی باید احراز هویت و فیلتر داده‌ها در سرور انجام شود.</p>`; }
+
+/* ---------- پنل‌های اطلاعاتی ---------- */
+function shipHTML(p){ const P=S.P, e=P.E[p.edge]; if(!canEdge(e.id)) return ['اطلاعات محموله',`<p class="restricted">${ic('lock',16)} این اطلاعات برای سطح دسترسی شما قابل مشاهده نیست.</p>`];
+  const s=SIM.ships[e.id], b=SIM.batches[s.batch], f=P.C[e.from], t=P.C[e.to], sd=shipData(s), evs=SIM.events.filter(x=>x.ship===s.id);
+  return ['اطلاعات محموله',`<div class="rows">${row('شناسه محموله',s.id)}${row('شناسه دسته مواد',b.id)}${row('نوع ماده یا قطعه',e.mat)}${row('تأمین‌کننده',f.name)}${row('مبدأ',`${f.city}، ${f.country}`)}${row('مقصد',`${t.name} – ${t.city}، ${t.country}`)}${row('وسیله حمل‌ونقل فعلی',`${MODE_VEH[e.segs[s.seg].mode]} (${MODE_NAME[e.segs[s.seg].mode]})`)}${row('مسیر چندوجهی',e.segs.map(x=>MODE_VEH[x.mode]).join(' ← '))}${row('تاریخ ارسال',jtime(s.sent))}${row('تحویل پیش‌بینی‌شده',jdate(s.sent+e.days))}${row('وضعیت فعلی',shipStatus(e,s))}${row('وضعیت ثبت اطلاعات',stBadge(sd[1]==='ok'?'ok':sd[1]==='warn'?'rev':'exp',sd[0]))}${row('دسته‌های ورودی مرتبط', b.inputs===null? stBadge('exp','ثبت نشده') : b.inputs.length? b.inputs.filter(id=>canComp(SIM.batches[id].comp)).join('، ')||LOCK : 'ماده اولیه (بدون ورودی)')}${row('قیمت خرید (نمایشی)',canField('price',e)?fa(e.price.toLocaleString('en'))+' یورو در هر تن':LOCK)}</div>
+   <h4>تاریخچه رویدادها</h4><div class="evl">${evs.length?evs.slice().reverse().map(evRow).join(''):`<p class="thint">${s.gap?'رویدادهای این محموله به‌دلیل قطع تبادل اطلاعات ثبت نشده‌اند.':'هنوز رویدادی ثبت نشده است.'}</p>`}</div>
+   <button class="btn sm" data-act="ship-track" data-id="${e.id}">${ic('chart',15)} مشاهده سوابق رهگیری</button>
+   <p class="fine">این رکورد رهگیری محموله است، نه یک گذرنامه مستقل؛ از طریق شناسه دسته به قطعه و در نهایت به گذرنامه محصول نهایی متصل می‌شود.</p>`]; }
+function compHTML(p){ const P=S.P, c=P.C[p.id]; if(!canComp(c.id)) return ['اطلاعات شرکت',`<p class="restricted">${ic('lock',16)} این اطلاعات برای سطح دسترسی شما قابل مشاهده نیست.</p>`];
+  const self=c.id===scope().self, ins=P.inn[c.id].filter(e=>canEdge(e.id)), outs=P.out[c.id].filter(e=>canEdge(e.id));
+  const li=(e,o)=>`<button class="erow" data-act="edge" data-id="${e.id}"><i style="background:${P.B[e.branch].color}"></i><span>${e.mat}<small>${o?'به '+P.C[e.to].name:'از '+P.C[e.from].name}</small></span>${ic('chevron',14)}</button>`;
+  const hidden = !self && (P.inn[c.id].length+P.out[c.id].length > ins.length+outs.length);
+  return [c.name,`<div class="rows">${row('نقش در زنجیره',`<i class="dotl" style="background:${TIER_COLOR[c.tier]}"></i>${TIER_NAME[c.tier]}`)}${row('موقعیت',`${c.city}، ${c.country}`)}${row('خروجی اصلی',c.out)}${row('مالک داده',c.name)}${row('محرمانگی رکورد',c.meta.confidential?'محرمانه تجاری – فقط طرف‌های مجاز':'عمومی')}${self?row('نسبت با شما','کارخانه شما'):''}</div>
+   <h4>ورودی‌های مرتبط</h4>${ins.length?ins.map(e=>li(e,0)).join(''):`<p class="thint">${c.tier===3?'تأمین‌کننده ماده اولیه است و ورودی ثبت‌شده ندارد.':'ورودی قابل مشاهده‌ای در محدوده دسترسی شما وجود ندارد.'}</p>`}
+   <h4>خروجی‌های مرتبط</h4>${outs.length?outs.map(e=>li(e,1)).join(''):'<p class="thint">خروجی قابل مشاهده‌ای در محدوده دسترسی شما وجود ندارد.</p>'}
+   ${hidden?`<p class="restricted sm">${ic('lock',14)} سایر ارتباط‌های این شرکت برای سطح دسترسی شما قابل مشاهده نیست.</p>`:''}
+   <button class="btn sm" data-act="focus-comp" data-id="${c.id}">${ic('pin',15)} نمایش موقعیت روی نقشه</button>`]; }
+function edgeHTML(p){ const P=S.P, e=P.E[p.id]; if(!canEdge(e.id)) return ['ارتباط تأمین',`<p class="restricted">${ic('lock',16)} این اطلاعات برای سطح دسترسی شما قابل مشاهده نیست.</p>`];
+  return [`ارتباط تأمین: ${e.mat}`,`<div class="rows">${row('نوع ماده یا قطعه',e.mat)}${row('از',P.C[e.from].name)}${row('به',P.C[e.to].name)}${row('مسیر مواد',`<i class="dotl" style="background:${P.B[e.branch].color}"></i>${P.B[e.branch].name}`)}${row('قیمت خرید (نمایشی)',canField('price',e)?fa(e.price.toLocaleString('en'))+' یورو در هر تن':LOCK)}</div>
+   <h4>شیوه حمل‌ونقل</h4><div class="legs">${e.segs.map(s=>`<div class="leg">${ic(s.mode,18)}<span><b>حمل ${MODE_NAME[s.mode]}</b><small>تا ${s.endName} · حدود ${fa(s.km.toLocaleString('en'))} کیلومتر</small></span></div>`).join('')}</div>
+   <div class="sbtns"><button class="btn sm" data-act="focus-edge" data-id="${e.id}">${ic('map',15)} نمایش مسیر روی نقشه</button><button class="btn sm ghost" data-act="veh" data-id="${e.id}">${ic('box',15)} محموله جاری</button></div><p class="fine">مسیرها نمونه فرضی و شبیه‌سازی‌شده‌اند.</p>`]; }
+const AL={3:['اطلاعات مربوط به منشأ این محموله در سامانه ثبت نشده است.','منشأ و مشخصات دسته مواد اولیه ارسالی','اگر مشکلی در کیفیت یا انطباق ماده پیدا شود، ردیابی آن تا منبع ممکن نیست.'],
+ 2:['امکان بررسی کامل سوابق مواد ورودی وجود ندارد.','سوابق مواد ورودی و دسته‌های فرآوری‌شده','نمی‌توان مطمئن شد هر دسته فرآوری‌شده از کدام ماده ورودی ساخته شده است.'],
+ 1:['ارتباط اطلاعاتی بین مواد اولیه و قطعات تولیدشده ناقص است.','پیوند دسته قطعات با دسته‌های مواد ورودی','در صورت فراخوان، تشخیص قطعات آسیب‌دیده دشوار و پرهزینه می‌شود.'],
+ asm:['اطلاعات برخی قطعات ورودی برای رهگیری کامل در دسترس نیست.','پیوند قطعات ورودی با دسته محصول نهایی','شناسنامه محصول نهایی ناقص می‌ماند و اثبات ادعاهای منشأ و پایداری سخت می‌شود.'],
+ dist:['بررسی تاریخچه این محموله با محدودیت مواجه شده است.','تاریخچه جابه‌جایی، انبارش و تحویل محصول','زمان و محل دقیق رویدادها قابل استناد نیست.'],
+ store:['اطلاعات جدیدی برای تکمیل شناسنامه محصول دریافت نشده است.','به‌روزرسانی شناسنامه محصول برای خریدار','مصرف‌کننده آخرین وضعیت محصول را نمی‌بیند.']};
+function alertHTML(p){ const P=S.P;
+  if((p.id==='pub'||isConsumer())&&SIM.dpp) return ['وضعیت اطلاعات',`<p class="almsg ok">${ic('checkc',18)} تبادل اطلاعات دوباره برقرار است؛ شناسنامه محصول با رویدادهای عمومی جدید به‌روز می‌شود.</p>`];
+  if(p.id==='pub'||isConsumer()) return ['هشدار اطلاعات',`<p class="almsg">${ic('alert',18)} آخرین اطلاعات رهگیری محصول در دسترس نیست.</p><div class="rows">${row('محل مشکل','شناسنامه عمومی محصول')}${row('دلیل مشکل','تبادل اطلاعات گذرنامه دیجیتال به‌صورت آزمایشی قطع شده است.')}${row('اطلاعات تحت تأثیر','رویدادهای عمومی تازه، مانند تحویل به فروشگاه')}${row('پیامد احتمالی','اطلاعات قبلی باقی است، اما شناسنامه به‌روز نمی‌شود.')}${row('نقش DPP','با برقراری تبادل اطلاعات، آخرین وضعیت عمومی محصول برای خریدار قابل مشاهده است.')}</div>`];
+  const c=P.C[p.id]; if(!canComp(c.id)) return ['هشدار',`<p class="restricted">${ic('lock',16)} این اطلاعات برای سطح دسترسی شما قابل مشاهده نیست.</p>`];
+  const a=AL[c.tier>0?c.tier:c.kind==='assembly'?'asm':c.kind==='store'?'store':'dist'], n=SIM.gapOpen?nodeGap(SIM.gapOpen,c.id):0;
+  if(SIM.dpp){ const g=SIM.gaps[SIM.gaps.length-1], m=g?nodeGap(g,c.id):0; return ['وضعیت اطلاعات',`<p class="almsg ok">${ic('checkc',18)} تبادل اطلاعات دوباره برقرار است و رویدادهای جدید ثبت می‌شوند.</p><div class="rows">${row('محل',`${c.name} – ${c.city}، ${c.country}`)}${row('رویدادهای ثبت‌نشده در بازه قطع',fa(m)+' رویداد (در محدوده دسترسی شما)')}${row('وضعیت آن بازه',stBadge('exp','ثبت نشده – تأییدنشده'))}</div><p class="fine">رویدادهایی که هنگام قطع تبادل ثبت نشده‌اند، بدون منبع معتبر به‌طور خودکار «تأییدشده» محسوب نمی‌شوند.</p>`]; }
+  return ['هشدار اطلاعات',`<p class="almsg">${ic('alert',18)} ${a[0]}</p><div class="rows">${row('محل مشکل',`${c.name} – ${c.city}، ${c.country}`)}${row('دلیل مشکل','تبادل اطلاعات گذرنامه دیجیتال به‌صورت آزمایشی قطع شده و رویدادهای جدید این بخش ثبت نمی‌شوند.')}${row('اطلاعات تحت تأثیر',a[1])}${row('پیامد احتمالی',a[2])}${row('نقش DPP در کاهش مشکل','با ثبت پیوسته رویدادها، هر دسته به ورودی‌هایش متصل می‌ماند و طرف‌های مجاز می‌توانند سوابق را بررسی کنند.')}${row('رویدادهای ثبت‌نشده مرتبط','<span id="algap">'+fa(n)+'</span> رویداد (در محدوده دسترسی شما)')}</div>
+   <p class="fine">جابه‌جایی فیزیکی کالا ادامه دارد؛ فقط جریان اطلاعات متوقف شده است. اطلاعات ثبت‌شده قبلی حذف نمی‌شوند.</p><button class="btn sm" data-act="focus-comp" data-id="${c.id}">${ic('pin',15)} نمایش روی نقشه</button>`]; }
+function regionHTML(p){ const r=S.P.regions[p.id]; return [`منطقه تأمین: ${r.name}`,`<p class="almsg ok">${ic('leaf',18)} بخشی از مواد اولیه (${[...new Set(r.mats)].join('، ')}) از ${r.name} تأمین شده است.</p><div class="rows">${row('نام تأمین‌کنندگان',LOCK)}${row('محل دقیق',LOCK)}${row('مسیر و زمان‌بندی محموله‌ها',LOCK)}</div><p class="fine">برای مصرف‌کننده فقط منشأ کلی مواد در سطح منطقه نمایش داده می‌شود؛ جزئیات شبکه تأمین محرمانه تجاری است.</p>`]; }
+function gnodeHTML(p){ const n=S.P.GN.find(x=>x.id===p.id); const d={g0:'مواد اولیه محصول از چند منطقه جهان تأمین می‌شود.',g1:'مواد اولیه در کارخانه‌های فرآوری به مواد قابل استفاده تبدیل می‌شوند.',g2:'قطعات اصلی محصول در کارخانه‌های جداگانه ساخته می‌شوند.',g3:`قطعات در ${S.P.madeIn} مونتاژ و به محصول نهایی تبدیل می‌شوند.`,g4:`محصول از طریق مرکز توزیع به فروشگاه در ${S.P.market[0]} می‌رسد.`}[n.id];
+  return [n.name,`<p class="almsg ok">${ic('info',18)} ${d}</p><div class="rows">${row('نام و تعداد شرکت‌ها',LOCK)}${row('محل دقیق',LOCK)}${row('جزئیات محموله‌ها',LOCK)}</div><p class="fine">این نما خلاصه عمومی مراحل تولید است. برای دیدن جزئیات بیشتر، نقش را تغییر بده.</p><button class="btn sm" data-act="passport">${ic('passport',15)} شناسنامه دیجیتال محصول</button>`]; }
+const gvehHTML=()=>['اطلاعات محموله',`<p class="restricted">${ic('lock',16)} این اطلاعات برای سطح دسترسی شما قابل مشاهده نیست.</p><p class="fine">مسیر دقیق، زمان‌بندی و شناسه محموله‌های تجاری برای مصرف‌کننده نمایش داده نمی‌شود. آنچه می‌بینی فقط نمای کلی جابه‌جایی کالا بین مراحل است.</p>`];
+function pubHTML(p){ const P=S.P; return p.id==='made'? ['کشور تولید',`<div class="rows">${row('کشور تولیدکننده',P.madeIn)}${row('تولیدکننده',P.maker)}${row('محل دقیق کارخانه',LOCK)}</div>`] : ['محل عرضه',`<div class="rows">${row('بازار عرضه',P.market[0])}${row('فروشگاه و مرکز توزیع',LOCK)}</div>`]; }
+
+/* ---------- نمودار شبکه تأمین ---------- */
+function renderNet(){ const P=S.P, sc=scope(); const cols=['سطح ۳: مواد اولیه','سطح ۲: فرآوری مواد','سطح ۱: تولید قطعات','تولیدکننده نهایی','توزیع و فروش'];
+  const CW=196, CWd=164, RH=56, CH=42, W=5*CW; const byCol=[[],[],[],[],[]];
+  const nodes = sc.generic? P.GN.map((n,i)=>({...n,col:i})) : P.companies.filter(c=>sc.comps.has(c.id));
+  nodes.forEach(n=>byCol[n.col].push(n)); const maxR=Math.max(1,...byCol.map(c=>c.length)); const H=36+maxR*RH+8; const pos={};
+  byCol.forEach((col,ci)=>col.forEach((n,i)=>{ pos[n.id]=[W-(ci+1)*CW+(CW-CWd)/2, 36+(maxR-col.length)*RH/2+i*RH]; }));
+  const edges = sc.generic? P.GE : P.edges.filter(e=>sc.edges.has(e.id));
+  const lines=edges.map(e=>{ const a=pos[e.from], b=pos[e.to]; let d;
+    if(Math.abs(a[0]-b[0])<1) d=`M${a[0]+CWd/2} ${a[1]+CH}L${b[0]+CWd/2} ${b[1]}`; else d=`M${a[0]} ${a[1]+CH/2}C${a[0]-22} ${a[1]+CH/2} ${b[0]+CWd+22} ${b[1]+CH/2} ${b[0]+CWd} ${b[1]+CH/2}`;
+    const c=e.color||P.B[e.branch].color; return `<g ${e.branch?`data-act="edge" data-id="${e.id}"`:''} class="nl"><path d="${d}" class="nhit"/><path d="${d}" stroke="${c}" class="nline"/></g>`; }).join('');
+  $('#netbody').innerHTML=`<div class="netc" style="width:${W}px;height:${H}px">${cols.map((c,i)=>`<div class="ncol" style="left:${W-(i+1)*CW}px;width:${CW}px;height:${H}px"><b>${c}</b></div>`).join('')}<svg width="${W}" height="${H}">${lines}</svg>${nodes.map(n=>`<button class="ncard ${n.id===sc.self?'self':''}" data-act="${n.generic?'gnode':'comp'}" data-id="${n.id}" style="left:${pos[n.id][0]}px;top:${pos[n.id][1]}px;width:${CWd}px;height:${CH}px;--c:${TIER_COLOR[n.tier]}"><i></i><span>${n.name}${n.id===sc.self&&S.ctx.comp?' (شما)':''}</span></button>`).join('')}</div>`;
+  $('#netnote').textContent = sc.generic? 'نمای خلاصه عمومی – شبکه شرکت‌ها برای مصرف‌کننده محرمانه است' : S.ctx.role==='manufacturer'? 'شبکه‌ای که در این سناریو با تولیدکننده نهایی به اشتراک گذاشته شده است' : 'فقط کارخانه شما و طرف‌های مستقیم آن';
+  const sb=$('#netbody'); sb.scrollLeft=sb.scrollWidth; }
+
+/* ---------- رویدادهای رابط کاربری ---------- */
+function selectStep(b,n,noFocus){ const P=S.P; S.branch=b; S.step={b,n}; const s=P.steps[b].find(x=>x.n===n); S.selComp=null;
+  if(isConsumer()){ S.selEdge=null; applyHL(); if(!noFocus) focusRegion(s.country); }
+  else if(s.kind==='move'){ noFocus? (S.selEdge=s.edge,S.selSeg=s.seg,applyHL()) : focusEdge(s.edge,s.seg); }
+  else { S.selEdge=null; noFocus? (S.selComp=s.comp,applyHL()) : focusComp(s.comp); } }
+function openTrack(){ S.open.track=true; openPanel({type:'passport'}); setTimeout(()=>{ const t=$('#pbody .stepw.sel')||$('#sec-track'); t&&t.scrollIntoView({block:'center'}); },60); }
+const ACT={
+ 'pick-product'(d){ S.P=buildProduct(PRODUCTS[d.id]); prepProduct(S.P); S.ctx={role:null,comp:null}; PICK={role:null,comp:null}; _scope=null; simReset(); renderRoles(); showScreen('s-role'); window.scrollTo(0,0); },
+ 'pick-role'(d){ PICK={role:d.id,comp:null}; renderRoles(); },
+ 'pick-comp'(d){ PICK.comp=d.id; renderRoles(); },
+ enter(){ S.ctx={role:PICK.role,comp:PICK.comp}; enterMain(); },
+ home(){ SIM.running=false; renderProducts(); showScreen('s-product'); },
+ 'back-main'(){ showScreen('s-main'); },
+ role(){ PICK={role:S.ctx.role,comp:S.ctx.comp}; renderRoles(); showScreen('s-role'); },
+ view(d){ setView(d.id); if(S.selEdge) focusEdge(S.selEdge,S.selSeg); else if(S.branch&&!isConsumer()) focusBranch(S.branch); },
+ sim(){ if(!SIM.started){ SIM.started=true; SIM.running=true; } else SIM.running=!SIM.running; updateHeader(); },
+ restart(){ simReset(); S.shipFilter=null; updateDppUI(); updateHeader(); drawVehicles(); if(S.panel) renderPanel(true); toast('شبیه‌سازی از ابتدا آماده شد.'); },
+ dpp(){ setDpp(!SIM.dpp); updateDppUI(); if(S.panel) renderPanel(true);
+   toast(SIM.dpp?'گذرنامه دیجیتال دوباره فعال شد؛ ثبت رویدادهای جدید ادامه می‌یابد.':'تبادل اطلاعات قطع شد؛ کالاها حرکت می‌کنند اما رویدادی ثبت نمی‌شود.',SIM.dpp?'':'warn');
+   if(!SIM.dpp&&!SIM.started){ SIM.started=true; SIM.running=true; updateHeader(); } },
+ passport(){ openPanel({type:'passport'}); },
+ net(){ const n=$('#net'); n.classList.toggle('on'); if(n.classList.contains('on')) renderNet(); },
+ 'close-net'(){ $('#net').classList.remove('on'); },
+ 'close-panel'(){ closePanel(); },
+ 'peek'(){ $('#panel').classList.remove('peek'); $('#stage').classList.remove('peeking'); },
+ veh(d){ S.selEdge=d.id; S.selSeg=null; S.selComp=null; applyHL(); openPanel({type:'ship',edge:d.id}); },
+ gveh(){ openPanel({type:'gveh'}); }, gnode(d){ openPanel({type:'gnode',id:d.id}); }, region(d){ openPanel({type:'region',id:d.id}); }, pub(d){ openPanel({type:'pub',id:d.id}); },
+ comp(d){ S.selComp=d.id; S.selEdge=null; applyHL(); openPanel({type:'comp',id:d.id}); },
+ warn(d){ openPanel({type:'alert',id:d.id}); },
+ edge(d){ S.selEdge=d.id; S.selSeg=null; applyHL(); openPanel({type:'edge',id:d.id}); },
+ route(d){ const e=S.P.E[d.id]; const st=S.P.steps[e.branch].find(x=>x.kind==='move'&&x.edge===e.id&&x.seg===+d.s); selectStep(e.branch,st.n,true); S.shipFilter=null; openTrack(); },
+ branch(d){ S.branch = S.branch===d.id? null : d.id; S.step=null; S.selEdge=null; S.selComp=null; applyHL(); $('#trk').innerHTML=trackHTML(); if(S.branch&&!isConsumer()&&!isMobile()) focusBranch(S.branch); },
+ step(d){ const n=+d.n; if(S.step&&S.step.b===d.b&&S.step.n===n){ S.step=null; S.selEdge=null; S.selComp=null; applyHL(); } else selectStep(d.b,n,isMobile()); $('#trk').innerHTML=trackHTML(); },
+ 'show-map'(){ if(S.view==='game'&&isConsumer()) setView('geo'); if(isMobile()){ $('#panel').classList.add('peek'); $('#stage').classList.add('peeking'); } const s=S.step&&S.P.steps[S.step.b].find(x=>x.n===S.step.n); if(s) setTimeout(()=>selectStep(S.step.b,S.step.n),isMobile()?320:0); },
+ 'ship-track'(d){ const e=S.P.E[d.id], s=SIM.ships[e.id]; const st=S.P.steps[e.branch].find(x=>x.kind==='move'&&x.edge===e.id&&x.seg===s.seg); S.shipFilter=s.id; selectStep(e.branch,st.n,true); openTrack(); },
+ 'focus-comp'(d){ if(isMobile()) closePanel(); $('#net').classList.remove('on'); setTimeout(()=>focusComp(d.id),isMobile()?320:0); },
+ 'focus-edge'(d){ if(isMobile()) closePanel(); $('#net').classList.remove('on'); setTimeout(()=>focusEdge(d.id,null),isMobile()?320:0); },
+ eol(d){ S.eol=+d.id; $('#eolb').innerHTML=eolHTML(); },
+ 'goto-eol'(){ S.open.eol=true; const el=$('#pbody [data-sec="eol"]'); el.open=true; el.scrollIntoView({behavior:'smooth'}); },
+ zin(){ (S.view==='geo'?geoPZ:gamePZ).zoomBy(1.5); }, zout(){ (S.view==='geo'?geoPZ:gamePZ).zoomBy(1/1.5); }, zfit(){ S.view==='geo'?fitGeo():fitGame(); },
+ 'guide-close'(){ $('#guide').classList.remove('on'); }
+};
+document.addEventListener('click',ev=>{ const t=ev.target.closest('[data-act]'); if(!t) return;
+  const svg=ev.target.closest('svg#geo,svg#game'); if(svg){ const pz=svg.id==='geo'?geoPZ:gamePZ; if(pz&&pz.moved) return; }
+  const f=ACT[t.dataset.act]; if(f){ f(t.dataset,ev); } });
+document.addEventListener('toggle',ev=>{ const d=ev.target; if(d.dataset&&d.dataset.sec) S.open[d.dataset.sec]=d.open; },true);
+
+/* ---------- اتصال موتور شبیه‌سازی به رابط ---------- */
+let lastToast=0;
+HOOK.event=(ev,e)=>{ if(S.ctx.role&&!isConsumer()&&canEdge(e.id)) ping(e.id); };
+HOOK.missed=(c,e)=>{ if(S.ctx.role&&!isConsumer()&&canEdge(e.id)) ping(e.id,'bad'); };
+HOOK.arrive=(s,e)=>{ if(!S.ctx.role) return; const vis=isConsumer()? S.P.C[e.to].kind==='store' : canEdge(e.id); if(!vis) return; const now=performance.now(); if(now-lastToast<2800) return; lastToast=now;
+  SIM.dpp? toast('اطلاعات محموله به‌روزرسانی شد.') : toast(isConsumer()?'اطلاعات جدیدی برای شناسنامه دریافت نشد.':'محموله رسید، اما رویداد تحویل ثبت نشد.','warn'); };
+
+/* ---------- حلقه اصلی ---------- */
+let _lt=performance.now(), _sec=0;
+function loop(now){ const dt=Math.min(.1,(now-_lt)/1000); _lt=now;
+  if(S.P&&S.ctx.role){ simTick(dt); if($('#s-main').classList.contains('on')){ drawVehicles(); _sec+=dt;
+      if(_sec>1){ _sec=0; $('#clock').textContent='زمان شبیه‌سازی: '+jtime(SIM.t);
+        const p=S.panel; if(p){ if(p.type==='passport'){ const l=$('#lastupd'); if(l) l.textContent=lastUpd(); const lv=$('#live'); if(lv&&S.open.track) lv.innerHTML=liveHTML(); }
+          else if(p.type==='ship'&&SIM.running) renderPanel(true); else if(p.type==='alert'){ const g=$('#algap'); if(g&&SIM.gapOpen) g.textContent=fa(nodeGap(SIM.gapOpen,p.id)); } } } } }
+  requestAnimationFrame(loop); }
+window.addEventListener('DOMContentLoaded',()=>{ initGeoBase(); renderProducts(); showScreen('s-product'); requestAnimationFrame(loop); });
+
+</script>
+</body>
+</html>
